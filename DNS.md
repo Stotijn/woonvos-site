@@ -48,8 +48,16 @@ echte klik, niet met programmatisch gevulde velden.
    (gedaan 16-09-2026: alle drie de nameservers correct).
 2. `http://woonvos.nl` serveert de site, `www` en `stotijn.github.io` sturen
    door naar het kale domein (gedaan 16-09-2026).
-3. GitHub → repo `woonvos-site` → Settings → Pages: zodra het certificaat er
-   is (tot 24 u) **Enforce HTTPS** aanzetten:
+3. HTTPS (gedaan 16-09-2026, ±16:50): GitHub gaf het certificaat pas uit nadat
+   het domein via de API één keer verwijderd en opnieuw gezet was
+   (`{"cname": null}` en daarna `-f cname=woonvos.nl`; GitHub maakt daarbij
+   zelf twee commits "Delete CNAME"/"Create CNAME"). Daarna
    `gh api -X PUT repos/Stotijn/woonvos-site/pages -F https_enforced=true`.
-4. Mail: `dig +short TXT woonvos.nl` toont de nieuwe SPF; een testmail vanaf
-   bram@woonvos.nl naar een Gmail-adres → "SPF: PASS" in de originele headers.
+   Let's Encrypt-certificaat voor woonvos.nl en www.woonvos.nl, geldig tot
+   15-12-2026 en automatisch verlengd; http en www sturen door naar
+   https://woonvos.nl.
+4. Mail (gedaan 16-09-2026, 16:56): testmail vanaf bram@woonvos.nl naar
+   `check-auth@verifier.port25.com` (gratis controledienst; antwoord komt in
+   Spam terecht). Rapport: SPF pass, DKIM pass (header.d=woonvos.nl, sleutel
+   2048 bits), iprev pass. Een mail aan jezelf bewijst niets: Gmail bezorgt
+   die intern zonder SPF-controle.
