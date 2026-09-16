@@ -3,21 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacybeleid — Woonvos</title>
-  <meta name="description" content="Hoe Woonvos met je gegevens omgaat: lokaal tenzij je synchroniseert, opslag in de EU, geen advertenties en geen tracking.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FFFFFF">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14181B">
+  <title>Privacybeleid van Woonvos</title>
+  <meta name="description" content="Hoe Woonvos met je gegevens omgaat: versleuteld op je toestel, opslag in de EU, scannen alleen met jouw toestemming, geen advertenties en niemand die je volgt.">
+  <link rel="canonical" href="https://woonvos.nl/privacy.html">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
 <header class="site-header">
   <div class="wrap">
-    <img src="/assets/zashi.png" alt="" width="34" height="34">
+    <img src="/assets/zashi-mark.png" alt="" width="30" height="30">
     <a class="brand" href="/">Woonvos</a>
     <nav aria-label="Hoofdnavigatie">
       <a href="/privacy.html" aria-current="page">Privacy</a>
-      <a href="/support.html">Support</a>
+      <a href="/support.html">Hulp</a>
     </nav>
   </div>
 </header>
@@ -25,178 +29,330 @@
 <main class="wrap doc">
 
   <h1>Privacybeleid</h1>
-  <p class="doc-meta">Versie 1.0 · 2 september 2026 · geldt voor de Woonvos-app en deze website</p>
+  <p class="doc-meta">Versie 1.1, 16 september 2026. Geldt voor de Woonvos-app en deze website.</p>
 
-  <p>De korte versie: Woonvos werkt zonder account volledig op je eigen
-  telefoon en er verlaat dan niets je toestel. Maak je een account aan om
-  te synchroniseren, dan staan je gegevens versleuteld op servers in de
-  Europese Unie. Er zijn geen advertenties, er is geen tracking en er
-  wordt niets doorverkocht. De lange versie staat hieronder.</p>
-
-  <h2 id="verantwoordelijke">1. Wie is verantwoordelijk</h2>
-  <p>Woonvos wordt gemaakt en beheerd door Bram Stotijn. Voor de Algemene
-  verordening gegevensbescherming (AVG) is hij de
-  verwerkingsverantwoordelijke. Vragen over dit beleid of over je
-  gegevens? Mail naar <a href="mailto:hallo@woonvos.nl">hallo@woonvos.nl</a>.</p>
-
-  <h2 id="uitgangspunt">2. Het uitgangspunt: lokaal, tenzij jij anders kiest</h2>
-  <p>Woonvos is offline-first gebouwd. Alles wat je invoert — je woning,
-  apparaten, onderhoud, foto's en documenten — staat in een versleutelde
-  database op je eigen toestel. Zonder account is er geen server waar je
-  gegevens naartoe gaan.</p>
-  <p>Twee dingen veranderen dat, en allebei alleen als je er zelf voor kiest:</p>
-  <ul>
-    <li><strong>Een account aanmaken</strong> om je gegevens te synchroniseren
-    tussen apparaten of te bewaren in de cloud.</li>
-    <li><strong>Een slimme scan starten</strong> (bijvoorbeeld van een
-    typeplaatje of kassabon), waarbij die ene foto naar de scan-dienst
-    wordt gestuurd om er gegevens uit te halen.</li>
+  <h2 id="kort">In het kort</h2>
+  <ul class="kern">
+    <li><strong>Wie.</strong> Bram Stotijn uit Beuningen maakt Woonvos en is
+    verantwoordelijk voor je gegevens. Vragen:
+    <a href="mailto:hallo@woonvos.nl?subject=Vraag%20over%20privacy">hallo@woonvos.nl</a>.</li>
+    <li><strong>Wat je geeft.</strong> Een e-mailadres en een wachtwoord voor
+    je account. Verder alleen wat je zelf in je woningdossier zet.</li>
+    <li><strong>Waar het staat.</strong> Versleuteld op je eigen telefoon; de
+    app werkt ook zonder internet. Ben je online, dan zet de app je dossier
+    automatisch ook in je account, op servers in de Europese Unie (Ierland).
+    Zo heb je het op al je apparaten en ben je het niet kwijt als je toestel
+    stuk gaat.</li>
+    <li><strong>Scannen.</strong> Een foto gaat alleen naar de scan-dienst als
+    jij een scan start en daar één keer toestemming voor hebt gegeven. Die
+    dienst staat in de Verenigde Staten; wat daar geldt staat in hoofdstuk 5.</li>
+    <li><strong>Wat Woonvos niet doet.</strong> Geen advertenties, niet volgen
+    wat je doet (tracking), niets doorverkopen.</li>
+    <li><strong>Je rechten.</strong> Je mag je gegevens inzien, laten aanpassen
+    of laten verwijderen. Mail daarvoor naar
+    <a href="mailto:hallo@woonvos.nl?subject=Verzoek%3A%20mijn%20gegevens">hallo@woonvos.nl</a>;
+    je krijgt binnen een maand antwoord. Klachten kunnen naar de Autoriteit
+    Persoonsgegevens.</li>
   </ul>
+  <p>De volledige uitleg staat hieronder.</p>
 
-  <h2 id="gegevens">3. Welke gegevens worden verwerkt</h2>
-  <p>Onderstaande geldt alleen als je een account gebruikt of scant.</p>
-  <div class="table-scroll">
+  <nav class="toc" aria-labelledby="toc-kop">
+    <p id="toc-kop">In dit beleid</p>
+    <ol>
+      <li><a href="#verantwoordelijke">Wie is verantwoordelijk voor mijn gegevens?</a></li>
+      <li><a href="#uitgangspunt">Blijven mijn gegevens op mijn telefoon?</a></li>
+      <li><a href="#gegevens">Welke gegevens gebruikt Woonvos, en wanneer?</a></li>
+      <li><a href="#grondslag">Waarvoor, en mag dat?</a></li>
+      <li><a href="#waar">Waar staan mijn gegevens?</a></li>
+      <li><a href="#derden">Wie helpt Woonvos daarbij?</a></li>
+      <li><a href="#bewaren">Hoe lang bewaart Woonvos mijn gegevens?</a></li>
+      <li><a href="#beveiliging">Hoe zijn mijn gegevens beveiligd?</a></li>
+      <li><a href="#rechten">Wat zijn mijn rechten?</a></li>
+      <li><a href="#cookies">Gebruikt deze website cookies?</a></li>
+      <li><a href="#wijzigingen">Wat als dit beleid verandert?</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="verantwoordelijke">1. Wie is verantwoordelijk voor mijn gegevens?</h2>
+  <p>Bram Stotijn, gevestigd in Beuningen (Gelderland), Nederland, maakt en
+  beheert Woonvos. Volgens de privacywet (de Algemene verordening
+  gegevensbescherming, AVG) is hij de verwerkingsverantwoordelijke: degene die
+  bepaalt wat er met je gegevens gebeurt en daarop aanspreekbaar is. Vragen
+  over dit beleid of over je gegevens? Mail naar
+  <a href="mailto:hallo@woonvos.nl?subject=Vraag%20over%20privacy">hallo@woonvos.nl</a>.</p>
+
+  <h2 id="uitgangspunt">2. Blijven mijn gegevens op mijn telefoon?</h2>
+  <p>Woonvos werkt eerst op je toestel (je telefoon of tablet) en pas daarna
+  met internet. Alles wat je invoert (je woning, apparaten en onderhoud) staat
+  in een versleutelde database op je eigen toestel. Je foto's en documenten
+  staan als bestanden in de afgeschermde opslag van de app. Alleen Woonvos
+  kan die map lezen, en iOS en Android versleutelen hem zelf. De app werkt
+  volledig zonder internet.</p>
+  <p>In deze testfase heb je een account nodig om de app te gebruiken. Ben je
+  ingelogd en online, dan zet de app je dossier automatisch ook in je account
+  in de cloud (synchroniseren). Een schakelaar om dat uit te zetten is er
+  niet. Wat hieronder staat, geldt dus voor iedereen die de app gebruikt.</p>
+  <p>Daarnaast kun je een <strong>scan</strong> starten, bijvoorbeeld van een
+  typeplaatje of kassabon. De app probeert de foto altijd eerst op je eigen
+  toestel te lezen. Daarbij verlaat de foto je toestel niet. (Op iPhone
+  gebeurt dat met de tekstherkenning van Apple, op Android met die van
+  Google, ML Kit.) Levert dat te weinig op, dan stuurt de app de foto naar de
+  scan-dienst. Dat gebeurt alleen als je daar in de app één keer toestemming
+  voor hebt gegeven. Zonder die toestemming kun je alles gewoon handmatig
+  invoeren.</p>
+
+  <h2 id="gegevens">3. Welke gegevens gebruikt Woonvos, en wanneer?</h2>
   <table>
     <thead>
       <tr><th scope="col">Gegevens</th><th scope="col">Wanneer</th><th scope="col">Waarvoor</th></tr>
     </thead>
     <tbody>
       <tr>
-        <td>E-mailadres en wachtwoord (versleuteld opgeslagen)</td>
-        <td>Bij het aanmaken van een account</td>
-        <td>Inloggen en accountbeheer. Inloggen kan alleen met e-mail en
-        wachtwoord; er zijn geen koppelingen met Google- of Apple-accounts.</td>
+        <td data-label="Gegevens">E-mailadres en wachtwoord. Woonvos slaat je
+        wachtwoord alleen op in een vorm die niet terug te rekenen is (een
+        hash); niemand, ook Woonvos niet, kan het teruglezen.</td>
+        <td data-label="Wanneer">Bij het aanmaken van een account</td>
+        <td data-label="Waarvoor">Inloggen en accountbeheer. Inloggen kan
+        alleen met e-mail en wachtwoord; er zijn geen koppelingen met Google-
+        of Apple-accounts.</td>
       </tr>
       <tr>
-        <td>Je woningdossier: woningen, apparaten, onderhoud, verzekeringsgegevens</td>
-        <td>Bij synchronisatie met een account</td>
-        <td>Je gegevens beschikbaar maken op al je apparaten en bewaren als
-        je toestel kwijtraakt</td>
+        <td data-label="Gegevens">Je woningdossier:
+          <ul>
+            <li>het adres van je woning</li>
+            <li>kamers</li>
+            <li>apparaten, met merk, type en serienummer</li>
+            <li>onderhoud</li>
+            <li>contactgegevens die je zelf invoert, zoals een installateur of
+            een noodcontact</li>
+            <li>je verzekeringsgegevens</li>
+          </ul>
+        </td>
+        <td data-label="Wanneer">Bij synchronisatie, zodra je ingelogd en
+        online bent</td>
+        <td data-label="Waarvoor">Je gegevens beschikbaar maken op al je
+        apparaten en bewaren als je toestel kwijtraakt. Voer je gegevens van
+        anderen in, dan doe je dat voor je eigen huishoudelijke administratie;
+        Woonvos gebruikt ze nergens anders voor.</td>
       </tr>
       <tr>
-        <td>Foto's en documenten (facturen, handleidingen, bewijsfoto's)</td>
-        <td>Bij synchronisatie met een account</td>
-        <td>Zelfde als hierboven</td>
+        <td data-label="Gegevens">Foto's en documenten (facturen,
+        handleidingen, bewijsfoto's)</td>
+        <td data-label="Wanneer">Bij synchronisatie, zodra je ingelogd en
+        online bent</td>
+        <td data-label="Waarvoor">Zelfde als hierboven</td>
       </tr>
       <tr>
-        <td>Scanfoto's</td>
-        <td>Alleen op het moment dat jij een slimme scan start</td>
-        <td>Merk, type of bedragen uit de foto halen zodat je ze niet hoeft
-        over te typen</td>
+        <td data-label="Gegevens">Scanfoto's van typeplaatjes, kassabonnen,
+        facturen, energielabels en documenten (zoals een garantiebewijs,
+        offerte of polis)</td>
+        <td data-label="Wanneer">Alleen als jij een scan start, de herkenning
+        op je eigen toestel te weinig oplevert én je toestemming hebt
+        gegeven</td>
+        <td data-label="Waarvoor">Merk, type, bedragen, datums of het
+        documenttype uit de foto halen, zodat je ze niet hoeft over te typen.
+        Zulke foto's kunnen ook gegevens van anderen bevatten (bijvoorbeeld
+        de naam van een installateur of een rekeningnummer op een factuur).
+        Die gebruikt de app alleen om de velden in jouw dossier in te
+        vullen.</td>
       </tr>
       <tr>
-        <td>Technische logbestanden en een teller van het aantal scans</td>
-        <td>Bij gebruik van account of scan</td>
-        <td>Beveiliging, foutopsporing en een eerlijke verdeling van de
-        scan-dienst. De teller telt alleen het aantal scans, niet de inhoud.</td>
+        <td data-label="Gegevens">Technische logbestanden (tijdstip,
+        IP-adres, app-versie, foutcode en een verkorte code van je account
+        waaruit niemand kan afleiden wie je bent) en een teller van het aantal
+        scans per maand</td>
+        <td data-label="Wanneer">Bij gebruik van de app</td>
+        <td data-label="Waarvoor">Beveiliging, foutopsporing en een eerlijke
+        verdeling van de scan-dienst. De teller telt alleen het aantal scans,
+        niet de inhoud.</td>
       </tr>
     </tbody>
   </table>
-  </div>
-  <p>Woonvos gebruikt geen analytics- of advertentiediensten en bouwt geen
-  profielen op. Wat je in de app doet, wordt niet gevolgd.</p>
+  <p>Woonvos gebruikt geen analytics- of advertentiediensten. Woonvos houdt
+  ook niet bij wat voor iemand je bent om daar iets mee te doen (geen
+  profielen). Eén technische kanttekening: op Android gebruikt de
+  tekstherkenning op je toestel de tekstherkenningssoftware van Google (ML
+  Kit). Je foto's en de herkende tekst blijven daarbij op je toestel. Wel
+  stuurt die software beperkte technische gegevens over gebruik en prestaties
+  naar Google, niet gekoppeld aan jou; zie daarvoor het privacybeleid van
+  Google. Op iPhone gebeurt de herkenning met de ingebouwde tekstherkenning
+  van Apple en gaat er niets naar buiten.</p>
+  <p>Woonvos is bedoeld voor volwassenen die een woning bezitten of huren; de
+  app verwerkt niet bewust gegevens van kinderen onder de 16. Er is geen
+  computer die beslissingen over jou neemt (geen geautomatiseerde
+  besluitvorming): de scan vult alleen velden in die jij daarna zelf
+  controleert en kunt aanpassen.</p>
 
-  <h2 id="grondslag">4. Waarvoor, en op welke grond</h2>
+  <h2 id="grondslag">4. Waarvoor, en mag dat?</h2>
+  <p>De privacywet vraagt voor elk gebruik van gegevens een wettelijke reden
+  (grondslag). Voor Woonvos zijn dat er drie:</p>
   <ul>
-    <li><strong>Uitvoering van de overeenkomst</strong> — het leveren van de
-    app zelf: je account, de synchronisatie en de scans die je start.</li>
-    <li><strong>Gerechtvaardigd belang</strong> — het veilig en werkend houden
-    van de dienst: technische logbestanden en misbruikpreventie.</li>
+    <li><strong>Uitvoering van de overeenkomst.</strong> Het leveren van de
+    app zelf: je account en het synchroniseren van je dossier.</li>
+    <li><strong>Toestemming.</strong> Het versturen van een scanfoto naar de
+    scan-dienst van Anthropic (het Amerikaanse bedrijf dat die dienst levert).
+    Die toestemming geef je één keer in de app, vóór je eerste scan. Intrekken
+    kan altijd via
+    <a href="mailto:hallo@woonvos.nl?subject=Toestemming%20scan%20intrekken">hallo@woonvos.nl</a>;
+    een schakelaar in de app-instellingen volgt. Intrekken verandert niets aan
+    scans die al gedaan zijn. De herkenning op je eigen toestel en handmatige
+    invoer blijven altijd werken.</li>
+    <li><strong>Gerechtvaardigd belang.</strong> Eigen belang dat de wet
+    toestaat: de dienst veilig en werkend houden, met technische logbestanden
+    en het voorkomen van misbruik.</li>
   </ul>
-  <p>Er worden nooit meer gegevens gevraagd dan hiervoor nodig is.</p>
+  <p>Woonvos vraagt niet meer gegevens dan hiervoor nodig is.</p>
 
-  <h2 id="waar">5. Waar je gegevens staan</h2>
-  <p>Je account, woningdossier, foto's en documenten staan bij
-  hostingleverancier Supabase in Ierland (Europese Unie). De verbinding
-  tussen je toestel en de servers is altijd versleuteld.</p>
-  <p>Er is één uitzondering op de EU-grens: start je een slimme scan, dan
-  wordt die ene foto verwerkt door Anthropic in de Verenigde Staten om er
-  gegevens uit te halen. Dat gebeurt alleen op jouw verzoek, per foto, en
-  Anthropic gebruikt deze gegevens niet om AI-modellen te trainen. Wil je
-  dat niet, dan kun je alles gewoon handmatig invoeren; de scan is altijd
-  optioneel.</p>
+  <h2 id="waar">5. Waar staan mijn gegevens?</h2>
+  <p>Je account, woningdossier, foto's en documenten staan bij het bedrijf dat
+  de servers levert (de hostingleverancier): Supabase, in Ierland (Europese
+  Unie). De synchronisatiedienst PowerSync bewaart daarnaast een kopie van je
+  woningdossier (niet van je foto's en documenten), eveneens in Ierland. De
+  verbinding tussen je toestel en de servers is altijd versleuteld.</p>
+  <p>Op de servers versleutelt de hostingleverancier je gegevens. Dat is geen
+  versleuteling waarbij alleen jij de sleutel hebt (geen
+  end-to-end-versleuteling). Bram kan als beheerder dus bij je gegevens als
+  dat voor beheer of support nodig is. Dat gebeurt alleen op jouw verzoek of
+  om een storing op te lossen.</p>
+  <p>Er is één uitzondering op de EU-grens: de scan. Start je een scan en heb
+  je daar toestemming voor gegeven, dan gaat die ene foto naar Anthropic in
+  de Verenigde Staten. Anthropic haalt er de gegevens uit en stuurt die
+  terug. Voor dat versturen naar buiten de EU (doorgifte) gelden de vaste
+  afspraken die de Europese Commissie daarvoor heeft opgesteld
+  (standaardcontractbepalingen, Standard Contractual Clauses). Die afspraken
+  maken deel uit van het contract tussen Woonvos en Anthropic (de
+  verwerkersovereenkomst); een kopie kun je opvragen via
+  <a href="mailto:hallo@woonvos.nl?subject=Kopie%20standaardcontractbepalingen">hallo@woonvos.nl</a>.
+  Anthropic gebruikt de foto en het resultaat niet om AI-modellen te trainen
+  en verwijdert ze automatisch binnen 30 dagen. Woonvos zelf bewaart de
+  scanfoto niet op de server; alleen het herkende resultaat komt, na jouw
+  controle, in je dossier. Wil je dit niet, dan kun je alles gewoon handmatig
+  invoeren. De scan is altijd optioneel.</p>
 
-  <h2 id="derden">6. Welke partijen daarbij helpen</h2>
-  <p>Woonvos verkoopt of deelt je gegevens niet. Voor het leveren van de
-  dienst worden drie verwerkers gebruikt:</p>
-  <div class="table-scroll">
+  <h2 id="derden">6. Wie helpt Woonvos daarbij?</h2>
+  <p>Woonvos verkoopt je gegevens niet en deelt ze niet met anderen voor hún
+  doeleinden. Maak je zelf een pdf van je verzekeringsdossier en deel je die
+  via de deelfunctie van je toestel, dan bepaal jij met wie; dat verloopt
+  buiten Woonvos om.</p>
+  <p>Om de app te laten werken schakelt Woonvos drie bedrijven in. Zij
+  verwerken gegevens alleen in opdracht van Woonvos en zijn daar contractueel
+  aan gebonden (verwerkers, met een verwerkersovereenkomst):</p>
   <table>
     <thead>
       <tr><th scope="col">Partij</th><th scope="col">Rol</th><th scope="col">Locatie</th></tr>
     </thead>
     <tbody>
       <tr>
-        <td>Supabase</td>
-        <td>Hosting van database, opslag en accounts</td>
-        <td>Ierland (EU)</td>
+        <th scope="row" data-label="Partij">Supabase</th>
+        <td data-label="Rol">Hosting van database, opslag en accounts</td>
+        <td data-label="Locatie">Ierland (EU)</td>
       </tr>
       <tr>
-        <td>PowerSync (JourneyApps)</td>
-        <td>Synchronisatie tussen je toestel en de database</td>
-        <td>Verwerkt gegevens tijdens het synchroniseren</td>
+        <th scope="row" data-label="Partij">PowerSync (JourneyApps)</th>
+        <td data-label="Rol">Synchronisatie tussen je toestel en de database;
+        houdt daarvoor een kopie van je gesynchroniseerde dossier bij (geen
+        foto's of documenten)</td>
+        <td data-label="Locatie">Ierland (EU)</td>
       </tr>
       <tr>
-        <td>Anthropic</td>
-        <td>Herkenning van gegevens in scanfoto's, alleen als jij scant</td>
-        <td>Verenigde Staten</td>
+        <th scope="row" data-label="Partij">Anthropic</th>
+        <td data-label="Rol">Herkenning van gegevens in scanfoto's, alleen als
+        jij scant en daar toestemming voor hebt gegeven</td>
+        <td data-label="Locatie">Verenigde Staten, met EU-standaardafspraken
+        (zie hoofdstuk 5)</td>
       </tr>
     </tbody>
   </table>
-  </div>
 
-  <h2 id="bewaren">7. Hoe lang gegevens bewaard blijven</h2>
+  <h2 id="bewaren">7. Hoe lang bewaart Woonvos mijn gegevens?</h2>
   <ul>
     <li>Je gegevens blijven bewaard zolang je account bestaat.</li>
-    <li>Wil je je account en gegevens laten verwijderen, mail dan naar
-    <a href="mailto:hallo@woonvos.nl">hallo@woonvos.nl</a>. Verwijdering
-    gebeurt binnen 30 dagen.</li>
-    <li>De gegevens op je eigen toestel blijven van jou: die verwijder je
-    zelf door de app of de app-gegevens te wissen.</li>
-    <li>Technische logbestanden worden kort bewaard en daarna automatisch
-    verwijderd.</li>
+    <li>Wil je je account en gegevens laten verwijderen? Mail dan vanaf het
+    e-mailadres van je account naar
+    <a href="mailto:hallo@woonvos.nl?subject=Verzoek%3A%20account%20verwijderen">hallo@woonvos.nl</a>.
+    Een verwijderknop in de app volgt. Je account gaat dan direct op slot.
+    Binnen 30 dagen zijn je gegevens definitief verwijderd, ook je foto's en
+    documenten op de server. Gegevens van een dossier dat je deelt met
+    huisgenoten kunnen bij hen blijven bestaan zolang hun account bestaat.</li>
+    <li>De gegevens op je eigen toestel blijven van jou: die verwijder je zelf
+    door de app of de app-gegevens te wissen.</li>
+    <li>Technische logbestanden bewaart de hostingleverancier maximaal
+    7 dagen; daarna verwijdert hij ze automatisch. De scanteller bewaart per
+    kalendermaand alleen het aantal scans en verdwijnt samen met je account.</li>
+    <li>Scanfoto's bewaart Anthropic maximaal 30 dagen (zie hoofdstuk 5).</li>
   </ul>
 
-  <h2 id="beveiliging">8. Hoe je gegevens beschermd worden</h2>
+  <h2 id="beveiliging">8. Hoe zijn mijn gegevens beveiligd?</h2>
   <ul>
-    <li>De database op je toestel is versleuteld (SQLCipher, AES-256).</li>
-    <li>Al het verkeer tussen app en servers loopt via versleutelde
-    verbindingen (TLS).</li>
-    <li>Op de server zorgt toegangsbeveiliging op rijniveau ervoor dat
-    alleen jouw account bij jouw gegevens kan.</li>
+    <li>De database op je toestel (iPhone en Android) is versleuteld
+    (SQLCipher, AES-256). De sleutel staat in de beveiligde sleutelopslag van
+    je toestel (Keychain op iPhone, Keystore op Android), net als je
+    inlogsessie.</li>
+    <li>Foto's en documenten staan in de afgeschermde opslag van de app, onder
+    de standaardversleuteling van het besturingssysteem.</li>
+    <li>Al het verkeer tussen app en servers is versleuteld (TLS).</li>
+    <li>De database op de server laat elk account alleen zijn eigen gegevens
+    zien (beveiliging op rijniveau).</li>
     <li>De sleutel van de scan-dienst staat op de server, nooit in de app.</li>
+    <li>Herinneringen voor onderhoud plant de app lokaal op je toestel;
+    daarvoor verstuurt de app niets.</li>
   </ul>
 
-  <h2 id="rechten">9. Jouw rechten</h2>
-  <p>Onder de AVG heb je recht op inzage, rectificatie, verwijdering,
-  beperking van de verwerking, overdraagbaarheid van je gegevens en
-  bezwaar. Mail je verzoek naar
-  <a href="mailto:hallo@woonvos.nl">hallo@woonvos.nl</a>; je krijgt binnen
-  een maand antwoord.</p>
-  <p>Ben je niet tevreden over hoe er met je gegevens wordt omgegaan, dan
-  kun je een klacht indienen bij de
-  <a href="https://www.autoriteitpersoonsgegevens.nl" rel="external">Autoriteit
-  Persoonsgegevens</a>.</p>
+  <h2 id="rechten">9. Wat zijn mijn rechten?</h2>
+  <p>Onder de privacywet mag je je gegevens inzien, laten verbeteren
+  (rectificatie), laten verwijderen, het gebruik laten stilzetten (beperking
+  van de verwerking), meenemen naar een andere dienst (overdraagbaarheid) en
+  bezwaar maken. Heb je toestemming gegeven voor de scan, dan kun je die
+  altijd intrekken. Mail je verzoek naar
+  <a href="mailto:hallo@woonvos.nl?subject=Verzoek%3A%20mijn%20gegevens">hallo@woonvos.nl</a>;
+  je krijgt binnen een maand antwoord.</p>
+  <p>Vind je dat Woonvos niet goed met je gegevens omgaat? Dan kun je een
+  klacht indienen bij de
+  <a href="https://www.autoriteitpersoonsgegevens.nl">Autoriteit
+  Persoonsgegevens</a>, de Nederlandse privacytoezichthouder.</p>
 
-  <h2 id="cookies">10. Cookies en deze website</h2>
-  <p>Deze website plaatst geen cookies, gebruikt geen analytics en laadt
+  <h2 id="cookies">10. Gebruikt deze website cookies?</h2>
+  <p>Nee. Deze website plaatst geen cookies, gebruikt geen analytics en laadt
   niets van andere partijen. Er valt dus ook niets te accepteren. De app
   gebruikt evenmin advertentie- of trackingcookies.</p>
+  <p>GitHub Pages (GitHub, Inc., Verenigde Staten) levert de pagina's zelf.
+  GitHub slaat bij elk bezoek je IP-adres op in zijn beveiligingslogboeken.
+  Daarvoor is GitHub zelf verantwoordelijk, onder
+  <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">de
+  privacyverklaring van GitHub</a>; Woonvos krijgt die logboeken niet te zien
+  en bewaart ze niet.</p>
 
-  <h2 id="wijzigingen">11. Wijzigingen in dit beleid</h2>
-  <p>Woonvos is in ontwikkeling. Komen er nieuwe functies die iets
-  veranderen aan hoe met gegevens wordt omgegaan (zoals pushmeldingen of
-  betalingen), dan wordt dit beleid bijgewerkt vóórdat die functies actief
-  worden. Bovenaan zie je dan het nieuwe versienummer en de datum.</p>
+  <h2 id="wijzigingen">11. Wat als dit beleid verandert?</h2>
+  <p>Woonvos is in ontwikkeling. Komen er nieuwe functies die iets veranderen
+  aan hoe Woonvos met je gegevens omgaat, bijvoorbeeld pushmeldingen via een
+  externe dienst of betalingen? Dan wordt dit beleid aangepast vóórdat die
+  functies aangaan. Bovenaan zie je dan het nieuwe versienummer en de datum.
+  Bij een wezenlijke wijziging (bijvoorbeeld een nieuwe verwerker of een
+  nieuw doel) krijg je daar ook in de app of per e-mail bericht van vóórdat
+  die ingaat.</p>
+  <p><strong>Versie 1.1 (16 september 2026)</strong> voegt toe of
+  verduidelijkt:</p>
+  <ul>
+    <li>dat je in de testfase een account nodig hebt en dat synchronisatie
+    automatisch gebeurt;</li>
+    <li>toestemming als grondslag voor de scan;</li>
+    <li>de waarborgen en bewaartermijn bij Anthropic;</li>
+    <li>de locatie van PowerSync;</li>
+    <li>de hosting van deze website;</li>
+    <li>concrete bewaartermijnen.</li>
+  </ul>
+
+  <p class="totop"><a href="#top">Naar boven</a></p>
 
 </main>
 
 <footer class="site-footer">
   <div class="inner">
-    <span class="vos" aria-hidden="true"><img src="/assets/zashi.png" alt=""></span>
+    <span class="vos" aria-hidden="true"><img src="/assets/zashi-mark.png" alt="" width="74" height="74"></span>
     <span>© 2026 Woonvos</span>
     <nav aria-label="Voettekst">
-      <a href="/privacy.html">Privacybeleid</a>
-      <a href="/support.html">Support</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/support.html">Hulp</a>
     </nav>
   </div>
 </footer>
