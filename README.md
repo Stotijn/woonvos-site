@@ -18,8 +18,12 @@ style.css       Eén stylesheet voor alles
 favicon.ico     Voor browsers die hem blind opvragen
 assets/         Beeldmerk (zashi-mark.png met transparantie voor header,
                 voet en kaartje; zashi.png alleen nog als og:image), favicons,
-                en het koplettertype Bitter SemiBold (bitter-600.woff2, latin,
-                SIL Open Font License in Bitter-OFL.txt)
+                het koplettertype Bitter SemiBold (bitter-600.woff2, latin,
+                SIL Open Font License in Bitter-OFL.txt) en het app-scherm op
+                de voorpagina (scherm-cv-ketel.webp: echte schermafbeelding
+                van de iPhone-simulator, 2x, bovenste deel van het
+                apparaatscherm; recept in de Woonvos-repo,
+                integration_test/site_screenshot_probe_test.dart)
 CNAME           Koppelt het domein woonvos.nl aan GitHub Pages
 DNS.md          De DNS-records bij TransIP en hoe ze gecontroleerd zijn
 ```

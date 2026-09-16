@@ -159,24 +159,21 @@ a:focus-visible {
 .knop:hover { background: var(--knop-hover); color: var(--knop-ink); }
 .knop:focus-visible { outline: 3px solid var(--oranje); outline-offset: 3px; }
 
-.kaart { margin: 0; max-width: 440px; position: relative; }
-.kaart dl {
+.kaart { margin: 0; max-width: 360px; position: relative; }
+.kaart-scherm {
   position: relative;
   z-index: 1;
-  margin: 0;
-  background: var(--creme);
-  color: #2D363A;                /* vast: het vlak is in beide thema's crème */
+  background: var(--creme);      /* het vlak is in beide thema's crème */
   border-radius: 10px;
-  padding: 22px 22px 18px;
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 8px 16px;
-  font-size: .97rem;
-  line-height: 1.45;
+  padding: 14px;                 /* de lijst om het scherm; geen telefoonframe */
 }
-.kaart dl > div { display: contents; }
-.kaart dt { color: #5A6772; font-size: .88rem; padding-top: .15em; }
-.kaart dd { margin: 0; max-width: none; }
+.kaart-scherm img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(45, 54, 58, .14);   /* hairline: scherm vs. lijst */
+}
 .kaart figcaption { margin-top: 12px; font-size: .9rem; color: var(--ink-soft); }
 /* Zashi gluurt over de bovenrand van het kaartje: hij staat erachter, alleen
    zijn kop steekt erbovenuit. Zelfde grap als in de voet, andere maat. */
