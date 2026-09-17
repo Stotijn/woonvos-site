@@ -22,8 +22,9 @@ assets/         Beeldmerk (zashi-mark.png met transparantie voor header,
                 SIL Open Font License in Bitter-OFL.txt) en het app-scherm op
                 de voorpagina (scherm-cv-ketel.webp: echte schermafbeelding
                 van de iPhone-simulator, 2x, bovenste deel van het
-                apparaatscherm; recept in de Woonvos-repo,
-                integration_test/site_screenshot_probe_test.dart)
+                apparaatscherm; recept: app op de simulator met een
+                testaccount, `xcrun simctl io <udid> screenshot`, bovenste
+                1690 px bijsnijden, naar 780 px breed, `cwebp -q 82`)
 CNAME           Koppelt het domein woonvos.nl aan GitHub Pages
 DNS.md          De DNS-records bij TransIP en hoe ze gecontroleerd zijn
 ```
