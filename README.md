@@ -10,8 +10,8 @@ afhankelijkheden. Een tekstwijziging is een commit; de site moet over twee
 jaar nog aan te passen zijn zonder eerst een toolchain te herstellen.
 
 ```
-index.html          Voorpagina, variant A van het stuk "Over Woonvos"
-variant-b.html      Dezelfde voorpagina met variant B ("Van de maker");
+index.html          Voorpagina, versie A van het stuk "Over Woonvos"
+variant-b.html      Dezelfde voorpagina met versie B ("Van de maker");
                     noindex, canonical naar https://woonvos.nl/
 privacy.html        Privacybeleid (vereist voor de app-stores)
 support.html        Hulp en contact (de support-URL die Apple vereist)
@@ -33,42 +33,46 @@ DNS.md              De DNS-records bij TransIP en hoe ze gecontroleerd zijn
   Font License in `Bitter-OFL.txt`). De lopende tekst gebruikt de
   systeemletter van het toestel.
 - `schermen/` bevat echte schermafbeeldingen van de app, per scherm twee
-  WebP-bestanden: `-390` (1x) en `-780` (2x). Zie "Schermafbeeldingen".
+  WebP-bestanden: `-390` (1x) en `-780` (2x). Er staan alleen schermen in
+  die de site gebruikt; de andere staan in `WoonVos/bijlagen`. Zie
+  "Schermafbeeldingen".
 - `og-woonvos.png` (1200 × 630) is de afbeelding die WhatsApp, Signal,
   LinkedIn en dergelijke tonen als iemand een link naar de site deelt.
 - `favicon-32.png` en `apple-touch-icon.png` zijn de icoontjes.
 
 ## Wat er op de voorpagina staat
 
-1. Een smalle testbalk bovenaan: "Testversie van de site" met de knoppen
-   Variant A en Variant B (gewone links naar `/#over` en
-   `/variant-b.html#over`, de actieve heeft `aria-current="page"`).
-2. De kop "Je huis, goed geregeld." met de knop "Doe mee met de test"
-   (een mailto naar hallo@woonvos.nl) en twee echte appschermen in een
-   telefoon van CSS.
-3. "Wat Woonvos voor je doet": drie rijen met scherm en tekst (gereedschap
-   uitlenen, bewijs bij schade of diefstal, klussen) en vier korte blokken
-   (alles op één plek, onderhoud, scannen, op al je toestellen).
-4. "Zorgvuldig met je gegevens": zes punten, met een link naar het
+1. De kop "Je huis, goed geregeld." met daarboven voor wie de app is, de
+   knop "Doe mee met de test" (springt naar het aanmeldblok) en één echt
+   appscherm in een telefoon van CSS.
+2. "Wat Woonvos voor je doet": eerst vier korte blokken (alles op één
+   plek, scannen, onderhoud, op al je toestellen), dan drie rijen met
+   scherm en tekst (bewijs bij schade of diefstal, gereedschap uitlenen,
+   klussen).
+3. "Zorgvuldig met je gegevens": zes punten, met een link naar het
    privacybeleid.
-5. "Voor wie is Woonvos?": huiseigenaren en huurders.
-6. Het stuk over de maker, per variant anders.
-7. "Doe mee met de test": drie stappen en dezelfde knop.
+4. Het stuk over de maker, per versie anders. Daaronder de wissel voor
+   testers: "Versie A" en "Versie B" (gewone links naar `/#over` en
+   `/variant-b.html#over`, de actieve heeft `aria-current="page"`).
+5. "Doe mee met de test": drie stappen en de knop "Mail om mee te doen"
+   (de enige mailto voor aanmelden; kop, hero en voet springen hierheen).
 
-Bewust níet op de site: plannen en alles wat nog niet in de app zit, en
-namen van diensten of hulpmiddelen buiten het privacybeleid. Wat er komt,
-staat alleen in de app.
+De site beschrijft alleen wat nu in de app zit. Namen van diensten staan
+alleen in het privacybeleid.
 
-## Twee varianten van het stuk over de maker
+## Twee versies van het stuk over de maker
 
 `index.html` en `variant-b.html` zijn op drie blokken na hetzelfde bestand.
 Die blokken staan tussen commentaarregels:
 
 ```
 <!-- variant:begin robots -->    alleen in B: <meta name="robots" content="noindex">
-<!-- variant:begin testbalk -->  welke knop aria-current="page" heeft
 <!-- variant:begin over -->      het stuk zelf: A "Over Woonvos", B "Van de maker"
+<!-- variant:begin wissel -->    welke knop aria-current="page" heeft
 ```
+
+Een variantblok staat nooit binnen een ander variantblok; het
+controlescript knipt van `begin` tot de eerstvolgende `end`.
 
 **Een tekstwijziging buiten die blokken doe je in beide bestanden**, op
 dezelfde manier. Daarna:
@@ -83,9 +87,11 @@ welke regels uit de pas lopen. Een wijziging in het stuk over de maker doe je
 alleen in het bestand van die variant.
 
 Is er een keuze gemaakt, dan: de gekozen tekst in `index.html` zetten,
-`variant-b.html` verwijderen, de testbalk (het blok `testbalk`) uit
+`variant-b.html` verwijderen, de wissel (het blok `wissel`) uit
 `index.html` halen, de lege `robots`-markering mag blijven of weg, en
-`check-varianten.sh` weggooien.
+`check-varianten.sh` weggooien. De hulppagina noemt de maker niet bij naam
+en past bij beide versies; het privacybeleid noemt hem wel, en dat blijft
+zo.
 
 ## Regels
 
@@ -101,9 +107,9 @@ Is er een keuze gemaakt, dan: de gekozen tekst in `index.html` zetten,
 - **Het logo alleen in de kop en de voet.** Geen vos die om hoeken kijkt,
   geen andere decoraties.
 - **Tekst in gewone taal (B1).** Je-vorm, korte zinnen, de uitkomst voorop,
-  de vakterm tussen haakjes achter het gewone woord. Geen gedachtestreepjes,
-  geen beloftes over wat nog niet af is, geen prijzen. Beweer niets over
-  gegevens wat niet in het privacybeleid staat.
+  de vakterm tussen haakjes achter het gewone woord. Geen gedachtestreepjes.
+  Beschrijf alleen wat nu in de app zit, en niet meer dan de app doet.
+  Beweer niets over gegevens wat niet in het privacybeleid staat.
 - **Toegankelijk.** `lang="nl"`, een link "Naar de inhoud", echte
   koppenstructuur (één h1 per pagina), zichtbare focus, tikdoelen van
   minstens 44 px, contrast op AA-niveau in licht én donker thema, geen
