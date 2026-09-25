@@ -5,35 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FFFFFF">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14181B">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14191C">
   <title>Hulp en contact bij Woonvos</title>
   <meta name="description" content="Meetesten, een fout melden, wachtwoord vergeten of je gegevens inzien: zo bereik je Bram, de maker van Woonvos.">
   <link rel="canonical" href="https://woonvos.nl/support.html">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/bitter-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<header class="site-header">
+<a class="skip" href="#inhoud">Naar de inhoud</a>
+
+<header class="kop">
   <div class="wrap">
-    <img src="/assets/zashi-mark.png" alt="" width="30" height="30">
-    <a class="brand" href="/">Woonvos</a>
+    <a class="merk" href="/"><img src="/assets/zashi-mark-96.webp" alt="" width="36" height="36">Woonvos</a>
     <nav aria-label="Hoofdnavigatie">
-      <a href="/privacy.html">Privacy</a>
-      <a href="/support.html" aria-current="page">Hulp</a>
+      <ul>
+        <li class="breed"><a href="/#functies">Functies</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/support.html" aria-current="page">Hulp</a></li>
+      </ul>
     </nav>
+    <a class="knop knop-klein" href="/#meedoen">Doe mee met de test</a>
   </div>
 </header>
 
-<main class="wrap doc">
+<main id="inhoud">
 
+<div class="doc-kop">
+  <div class="wrap">
   <h1>Hulp en contact</h1>
-
   <p>Ik ben Bram en ik maak Woonvos in mijn eentje. Heb je een vraag, of doet
   de app iets geks? Mail naar
   <a href="mailto:hallo@woonvos.nl?subject=Vraag%20over%20Woonvos">hallo@woonvos.nl</a>.
   Je krijgt meestal binnen een paar dagen antwoord.</p>
+  </div>
+</div>
+
+<div class="doc">
+  <div class="wrap">
 
   <p>Gaat het om een fout in de app, zet dan dit in je mail:</p>
   <ul class="melding">
@@ -81,16 +93,30 @@
   werkt hetzelfde als in de app. Wat er precies gebeurt, staat in het
   <a href="/privacy.html#bewaren">privacybeleid</a>.</p>
 
+  </div>
+</div>
+
 </main>
 
-<footer class="site-footer">
-  <div class="inner">
-    <span class="vos" aria-hidden="true"><img src="/assets/zashi-mark.png" alt="" width="74" height="74"></span>
-    <span>© 2026 Woonvos</span>
-    <nav aria-label="Voettekst">
-      <a href="/privacy.html">Privacy</a>
-      <a href="/support.html">Hulp</a>
-    </nav>
+<footer class="voet">
+  <div class="wrap">
+    <div class="rij-voet">
+      <div>
+        <a class="merk" href="/"><img src="/assets/zashi-mark-96.webp" alt="" width="36" height="36">Woonvos</a>
+        <p class="slogan">Je slimme huisgenoot. Voor huiseigenaren en huurders
+        in Nederland.</p>
+      </div>
+      <nav aria-label="Voettekst">
+        <ul>
+          <li><a href="/#functies">Functies</a></li>
+          <li><a href="/#meedoen">Doe mee met de test</a></li>
+          <li><a href="/privacy.html">Privacy</a></li>
+          <li><a href="/support.html">Hulp</a></li>
+          <li><a href="mailto:hallo@woonvos.nl">hallo@woonvos.nl</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="klein">© 2026 Woonvos</p>
   </div>
 </footer>
 
