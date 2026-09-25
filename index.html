@@ -31,18 +31,6 @@
 
 <a class="skip" href="#inhoud">Naar de inhoud</a>
 
-<!-- variant:begin testbalk -->
-<div class="proef">
-  <div class="wrap">
-    <p id="proef-uitleg">Testversie van de site. Vergelijk twee teksten over de maker:</p>
-    <ul aria-labelledby="proef-uitleg">
-      <li><a href="/#over" aria-current="page">Variant A</a></li>
-      <li><a href="/variant-b.html#over">Variant B</a></li>
-    </ul>
-  </div>
-</div>
-<!-- variant:end testbalk -->
-
 <header class="kop">
   <div class="wrap">
     <a class="merk" href="/"><img src="/assets/zashi-mark-96.webp" alt="" width="36" height="36">Woonvos</a>
@@ -62,28 +50,22 @@
   <section class="held" aria-labelledby="kop-held">
     <div class="wrap">
       <div class="held-tekst">
-        <h1 id="kop-held">Je huis, goed geregeld.</h1>
+        <p class="bovenregel">Voor huiseigenaren en huurders in Nederland</p>
+        <h1 id="kop-held">Je huis,<br> goed geregeld.</h1>
         <p class="held-sub">Woonvos bewaart alles over je woning op je telefoon:
         apparaten, bonnen, garanties, onderhoud en gereedschap. Zo heb je het
         bij de hand als je het nodig hebt.</p>
         <div class="held-actie">
-          <a class="knop" href="mailto:hallo@woonvos.nl?subject=Ik%20wil%20Woonvos%20meetesten&amp;body=Ik%20heb%20een%3A%20iPhone%20%2F%20Android-telefoon">Doe mee met de test</a>
+          <a class="knop" href="#meedoen">Doe mee met de test</a>
           <p class="held-noot">Woonvos is in besloten test op iPhone en
-          Android. Je mailt naar hallo@woonvos.nl.</p>
+          Android. Aanmelden gaat met één mail.</p>
         </div>
       </div>
       <div class="podium held-podium">
-        <div class="toestel achter">
-          <img src="/assets/schermen/02-onderhoud-780.webp"
-               srcset="/assets/schermen/02-onderhoud-390.webp 390w, /assets/schermen/02-onderhoud-780.webp 780w"
-               sizes="(max-width: 540px) 44vw, 240px"
-               width="390" height="848" decoding="async"
-               alt="Het onderhoudsoverzicht in Woonvos: geen achterstallige taken, elf geplande taken, je gereedschap met één uitgeleend stuk, en een geplande klus om een muur te verven.">
-        </div>
-        <div class="toestel voor">
+        <div class="toestel">
           <img src="/assets/schermen/01-overzicht-780.webp"
                srcset="/assets/schermen/01-overzicht-390.webp 390w, /assets/schermen/01-overzicht-780.webp 780w"
-               sizes="(max-width: 540px) 51vw, 280px"
+               sizes="(max-width: 719px) 60vw, 300px"
                width="390" height="848" decoding="async" fetchpriority="high"
                alt="Het overzicht van een woning in Woonvos: adres, bouwjaar en energielabel bovenaan, daaronder de kamers en de apparaten, met rechtsonder de knop Zashi Scan.">
         </div>
@@ -98,41 +80,38 @@
         <p>Je zet je huis en je spullen één keer in de app. Daarna helpt
         Woonvos je op de momenten dat het ertoe doet.</p>
       </div>
+      <ul class="tegels">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M5.5 9v10.5h13V9"/><path d="M10 19.5v-5h4v5"/></svg>
+          <h3>Alles van je huis op één plek</h3>
+          <p>Je woning, je kamers en je apparaten, met merk, type en
+          serienummer. De bon, het garantiebewijs en de handleiding bewaar je
+          bij het apparaat.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8"/><path d="M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8"/><path d="M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16"/><path d="M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><path d="M8 10h8"/><path d="M8 14h5"/></svg>
+          <h3>Scannen in plaats van typen</h3>
+          <p>Maak een foto van het typeplaatje of de kassabon. Woonvos leest
+          merk, type, bedrag en datum en vult ze voor je in. Jij kijkt het na.
+          Een garantiebewijs of handleiding scan je netjes bijgesneden.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>
+          <h3>Onderhoud op tijd</h3>
+          <p>Woonvos zet onderhoud voor je apparaten klaar, zoals de waterdruk
+          van de <span class="heel">cv-ketel</span>. Je eigen taken zet je er zelf bij. Is het tijd, dan
+          krijg je een melding op je telefoon.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4" width="11" height="16" rx="2"/><rect x="16.5" y="8.5" width="5" height="11.5" rx="1.5"/><path d="M8 17h2"/></svg>
+          <h3>Op al je toestellen</h3>
+          <p>Log je op een ander toestel in, dan staat alles er ook. Gaat je
+          telefoon stuk, dan ben je niets kwijt.</p>
+        </li>
+      </ul>
     </div>
 
-    <article class="rij" aria-labelledby="kop-uitlenen">
-      <div class="wrap">
-        <div class="rij-beeld">
-          <div class="podium">
-            <div class="toestel">
-              <img src="/assets/schermen/04-uitgeleend-780.webp"
-                   srcset="/assets/schermen/04-uitgeleend-390.webp 390w, /assets/schermen/04-uitgeleend-780.webp 780w"
-                   sizes="(max-width: 440px) 58vw, 256px"
-                   width="390" height="848" loading="lazy" decoding="async"
-                   alt="De accuboormachine in Woonvos, uitgeleend aan Sanne tot 4 oktober. Met één tik vraag je hem terug of meld je dat hij weer thuis is. Daaronder merk, model, serienummer en garantie.">
-            </div>
-          </div>
-        </div>
-        <div class="rij-tekst">
-          <h3 id="kop-uitlenen">Gereedschap uitlenen zonder gedoe</h3>
-          <p>Je ziet meteen wat je hebt en wat er is uitgeleend. Je noteert aan
-          wie en tot wanneer. Moet het terug, dan herinnert Woonvos je eraan en
-          vraag je het terug met een kant-en-klaar berichtje via WhatsApp of
-          sms.</p>
-          <ul class="punten">
-            <li>Per stuk gereedschap een uitleenlogboek: wie had het, en van
-            wanneer tot wanneer.</li>
-            <li>Vermist of gestolen? Je maakt een eigendomsbewijs (pdf) voor de
-            politie of je verzekeraar.</li>
-            <li>Nieuw elektrisch gereedschap? Woonvos herinnert je eraan het bij
-            de fabrikant te registreren. Bij veel merken krijg je dan extra
-            garantie.</li>
-          </ul>
-        </div>
-      </div>
-    </article>
-
-    <article class="rij rij-om" aria-labelledby="kop-bewijs">
+    <article class="rij" aria-labelledby="kop-bewijs">
       <div class="wrap">
         <div class="rij-beeld">
           <div class="podium">
@@ -156,6 +135,41 @@
             toevoegen.</li>
             <li>Je maakt er een pdf van en deelt die zelf met je
             verzekeraar.</li>
+            <li>Vermist of gestolen? Je maakt één pdf met foto, serienummer en
+            aankoopgegevens. Die gebruik je bij je aangifte of stuur je naar je
+            verzekeraar.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="rij rij-om" aria-labelledby="kop-uitlenen">
+      <div class="wrap">
+        <div class="rij-beeld">
+          <div class="podium">
+            <div class="toestel">
+              <img src="/assets/schermen/04-uitgeleend-780.webp"
+                   srcset="/assets/schermen/04-uitgeleend-390.webp 390w, /assets/schermen/04-uitgeleend-780.webp 780w"
+                   sizes="(max-width: 440px) 58vw, 256px"
+                   width="390" height="848" loading="lazy" decoding="async"
+                   alt="De accuboormachine in Woonvos, uitgeleend aan Sanne tot 4 oktober. Met één tik vraag je hem terug of meld je dat hij weer thuis is. Daaronder merk, model, serienummer en garantie.">
+            </div>
+          </div>
+        </div>
+        <div class="rij-tekst">
+          <h3 id="kop-uitlenen">Gereedschap uitlenen zonder gedoe</h3>
+          <p>Je ziet meteen wat je hebt en wat er is uitgeleend. Je noteert aan
+          wie en tot wanneer. Moet het terug? Dan herinnert Woonvos je eraan.
+          Je vraagt het terug met een kant-en-klaar berichtje via WhatsApp of
+          sms.</p>
+          <ul class="punten">
+            <li>Per stuk gereedschap zie je de uitleengeschiedenis: wie had het,
+            en van wanneer tot wanneer.</li>
+            <li>Je kunt bij het uitlenen een foto maken. Zo weet je later in
+            welke staat het wegging.</li>
+            <li>Bij een aantal bekende merken krijg je extra garantie als je
+            nieuw gereedschap op tijd registreert. Staat de aankoopdatum erbij,
+            dan herinnert Woonvos je daaraan.</li>
           </ul>
         </div>
       </div>
@@ -180,46 +194,14 @@
           ziet vooraf hoe moeilijk het is, hoe lang het duurt en wat je nodig
           hebt.</p>
           <ul class="punten">
-            <li>16 veelvoorkomende klussen, met uitleg en een schatting van de
-            kosten.</li>
+            <li>Veelvoorkomende klussen, van laminaat leggen tot tochtstrips
+            aanbrengen. Met uitleg en een schatting van de kosten.</li>
             <li>Wat al in je gereedschapskist ligt, staat al afgevinkt.</li>
             <li>Per onderdeel kies je: heb ik, lenen of kopen.</li>
           </ul>
         </div>
       </div>
     </article>
-
-    <div class="wrap">
-      <ul class="tegels">
-        <li>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M5.5 9v10.5h13V9"/><path d="M10 19.5v-5h4v5"/></svg>
-          <h3>Alles van je huis op één plek</h3>
-          <p>Je woning, je kamers en je apparaten, met merk, type en
-          serienummer. De bon, het garantiebewijs en de handleiding bewaar je
-          bij het apparaat.</p>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>
-          <h3>Onderhoud op tijd</h3>
-          <p>Woonvos zet onderhoud voor je apparaten klaar, zoals de waterdruk
-          van de <span class="heel">cv-ketel</span>. Je eigen taken zet je er zelf bij. Is het tijd, dan
-          krijg je een melding op je telefoon.</p>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8"/><path d="M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8"/><path d="M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16"/><path d="M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><path d="M8 10h8"/><path d="M8 14h5"/></svg>
-          <h3>Scannen in plaats van typen</h3>
-          <p>Maak een foto van het typeplaatje of de kassabon. Woonvos leest
-          merk, type, bedrag en datum en vult ze voor je in. Jij kijkt het na.
-          Een garantiebewijs of handleiding scan je netjes bijgesneden.</p>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4" width="11" height="16" rx="2"/><rect x="16.5" y="8.5" width="5" height="11.5" rx="1.5"/><path d="M8 17h2"/></svg>
-          <h3>Op al je toestellen</h3>
-          <p>Log je op een ander toestel in, dan staat alles er ook. Gaat je
-          telefoon stuk, dan ben je niets kwijt.</p>
-        </li>
-      </ul>
-    </div>
   </section>
 
   <section class="gegevens" aria-labelledby="kop-gegevens">
@@ -240,7 +222,7 @@
           <dd>De gegevens op je toestel worden versleuteld opgeslagen.</dd>
         </div>
         <div>
-          <dt>Opslag in de EU</dt>
+          <dt>Je dossier in de EU</dt>
           <dd>Ben je online, dan zet de app je dossier ook in je account, op
           servers in Ierland.</dd>
         </div>
@@ -265,68 +247,55 @@
     </div>
   </section>
 
-  <section class="voorwie" aria-labelledby="kop-voorwie">
-    <div class="wrap">
-      <div class="sectie-kop">
-        <h2 id="kop-voorwie">Voor wie is Woonvos?</h2>
-        <p>Voor iedereen in Nederland die zijn huis op orde wil hebben, of je
-        nu een koopwoning hebt of huurt.</p>
-      </div>
-      <div class="twee">
-        <div>
-          <h3>Huiseigenaren</h3>
-          <p>Je bent zelf verantwoordelijk voor de <span class="heel">cv-ketel</span>, het dak en alles
-          daartussen. Woonvos houdt bij wat je hebt, wanneer het onderhoud
-          nodig heeft en waar de bon is.</p>
-        </div>
-        <div>
-          <h3>Huurders</h3>
-          <p>Ook in een huurhuis heb je spullen die geld waard zijn. Met
-          Woonvos heb je je inboedel, je bonnen en je gereedschap bij elkaar.
-          Handig bij schade, diefstal of een verhuizing.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- variant:begin over -->
   <section id="over" class="over" aria-labelledby="kop-over">
     <div class="wrap">
+      <!-- variant:begin over -->
       <h2 id="kop-over">Over Woonvos</h2>
       <div class="over-tekst">
         <p>Woonvos wordt in Nederland gemaakt door een onafhankelijke maker.
         De app is in besloten test: een kleine groep mensen gebruikt hem thuis
-        en laat weten wat beter kan. Wat zij melden, wordt als eerste
-        opgepakt.</p>
+        en laat weten wat beter kan. Wat testers melden, komt als eerste aan de
+        beurt.</p>
         <p>Een vraag of een idee? Mail naar
         <a href="mailto:hallo@woonvos.nl?subject=Vraag%20over%20Woonvos">hallo@woonvos.nl</a>.
-        Elke mail wordt persoonlijk beantwoord, meestal binnen een paar
+        Je krijgt altijd persoonlijk antwoord, meestal binnen een paar
         dagen.</p>
       </div>
+      <!-- variant:end over -->
+      <!-- variant:begin wissel -->
+      <div class="wissel">
+        <p id="wissel-uitleg">Voor testers: dit stuk staat er in twee versies.</p>
+        <ul aria-labelledby="wissel-uitleg">
+          <li><a href="/#over" aria-current="page">Versie A</a></li>
+          <li><a href="/variant-b.html#over">Versie B</a></li>
+        </ul>
+      </div>
+      <!-- variant:end wissel -->
     </div>
   </section>
-  <!-- variant:end over -->
 
   <section id="meedoen" class="meedoen" aria-labelledby="kop-meedoen">
     <div class="wrap">
       <div class="podium">
-        <div>
+        <div class="meedoen-kop">
           <h2 id="kop-meedoen">Doe mee met de test</h2>
           <p class="inleiding">Woonvos is in besloten test op iPhone en
           Android. Wil je meedoen? Zo werkt het.</p>
         </div>
-        <div>
-          <ol class="stappen">
-            <li>Je mailt naar hallo@woonvos.nl en zet erbij of je een iPhone
-            of een Android-telefoon hebt.</li>
-            <li>Je krijgt per mail een uitnodiging om de app te
-            installeren.</li>
-            <li>Je maakt een account aan met je e-mailadres en zet je eerste
-            apparaat erin.</li>
-          </ol>
-          <a class="knop" href="mailto:hallo@woonvos.nl?subject=Ik%20wil%20Woonvos%20meetesten&amp;body=Ik%20heb%20een%3A%20iPhone%20%2F%20Android-telefoon">Doe mee met de test</a>
-          <p class="noot">Stoppen kan altijd: je verwijdert je account zelf in
-          de app.</p>
+        <ol class="stappen">
+          <li>Je mailt naar hallo@woonvos.nl en zet erbij of je een iPhone of
+          een <span class="heel">Android-telefoon</span> hebt. Heb je Android? Zet dan ook het
+          <span class="heel">e-mailadres</span> van je <span class="heel">Google-account</span> erbij.</li>
+          <li>Je krijgt per mail een uitnodiging om de app te
+          installeren.</li>
+          <li>Je maakt een account aan met je <span class="heel">e-mailadres</span> en voegt je
+          woning toe.</li>
+        </ol>
+        <div class="meedoen-actie">
+          <a class="knop" href="mailto:hallo@woonvos.nl?subject=Ik%20wil%20Woonvos%20meetesten&amp;body=Ik%20heb%20een%3A%20iPhone%20%2F%20Android-telefoon%0A%0AAlleen%20bij%20Android%2C%20het%20e-mailadres%20van%20mijn%20Google-account%3A%20">Mail om mee te doen</a>
+          <p class="noot">Opent er geen mailprogramma? Mail dan zelf naar
+          hallo@woonvos.nl. Stoppen kan altijd: je verwijdert je account zelf
+          in de app.</p>
         </div>
       </div>
     </div>
