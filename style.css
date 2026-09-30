@@ -594,6 +594,28 @@ a:hover { text-decoration-thickness: 3px; }
   font-weight: 600;
   box-shadow: inset 0 0 0 1px var(--lijn);
 }
+/* Alleen op een computer (muis, breed scherm): een QR-code naar deze pagina,
+   want Woonvos is een app voor de telefoon. Wit vlak, zodat de code ook in
+   de donkere stand goed scant. */
+.op-computer { display: none; }
+@media (hover: hover) and (pointer: fine) and (min-width: 900px) {
+  .op-computer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 0 20px;
+    max-width: 30rem;
+    font-size: .95rem;
+    color: var(--inkt-zacht);
+  }
+  .op-computer img {
+    flex: none;
+    padding: 6px;
+    border-radius: 12px;
+    background: #FFFFFF;
+  }
+  .op-computer p { margin: 0; }
+}
 .meedoen-actie .knoppen {
   display: flex;
   flex-wrap: wrap;
