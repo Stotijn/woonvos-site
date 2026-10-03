@@ -1,19 +1,34 @@
 /* woonvos.nl
 
-   Geen verzoeken naar derden: een zelf-gehost lettertype voor de koppen
-   (Bitter SemiBold), de systeemletter voor de tekst, eigen kleuren.
+   Geen verzoeken naar derden: één zelf-gehost lettertype voor alles
+   (Bitter: gewoon voor de tekst, cursief voor bijschriften en aanwijzingen,
+   SemiBold voor de koppen), eigen kleuren.
 
    Kleur is functie:
-     leisteen  het huisje uit het logo: tekst, koppen, de knop, het blok
-               over je gegevens
+     leisteen  het huisje uit het logo: tekst, koppen, de knop en de
+               genummerde aanwijzingen bij de schermen
      oranje    de vacht uit het logo: alleen de focusring en de streep onder
                links, nooit tekst op wit en nooit een vlak
-     podium    de achtergrond van de app zelf: alleen achter de
-               schermafbeeldingen en het aanmeldblok, zodat de schermen in
-               hun eigen omgeving staan
-   Het paginavlak blijft wit. Geen decoratie, geen beweging die niemand
+     grijs     koele tinten uit het leisteen voor lijnen en het aanmeldvlak
+   De crèmekleur zit alleen nog in de schermen zelf, want het is de kleur
+   van de app. Het paginavlak blijft wit, de schermen staan er zonder
+   telefoon omheen op. Geen decoratie en geen beweging waar niemand om
    vroeg. Het logo staat alleen in de kop en de voet. */
 
+@font-face {
+  font-family: "Bitter";
+  src: url("/assets/bitter-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bitter";
+  src: url("/assets/bitter-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
 @font-face {
   font-family: "Bitter";
   src: url("/assets/bitter-600.woff2") format("woff2");
@@ -28,19 +43,15 @@
   --inkt:        #2D363A;
   --inkt-sterk:  #1C2427;
   --inkt-zacht:  #56626A;
-  --lijn:        #E3DFD8;
-  --vlak:        #F6F5F2;
-  --podium:      #F4ECE1;
-  --nacht:       #25313A;
-  --nacht-inkt:  #F4F6F7;
-  --nacht-zacht: #C5CED4;
-  --nacht-rand:  transparent;
+  --lijn:        #DCE1E4;
+  --vlak:        #F3F5F6;
   --oranje:      #D0602A;
   --knop:        #2D363A;
   --knop-inkt:   #FFFFFF;
   --knop-hover:  #45525A;
   --toestel:     #15191B;
   --toestel-rand: rgba(28, 36, 39, .10);
+  --scherm-rand: rgba(28, 36, 39, .16);
   --schaduw:     0 28px 50px -26px rgba(28, 36, 39, .55);
   --wrap:        1160px;
   --goot:        24px;
@@ -54,17 +65,13 @@
     --inkt-zacht:  #A9B4BB;
     --lijn:        #2C353A;
     --vlak:        #1A2125;
-    --podium:      #212A2F;
-    --nacht:       #202A30;   /* iets lichter dan de pagina, met een rand */
-    --nacht-inkt:  #F4F6F7;
-    --nacht-zacht: #B7C1C8;
-    --nacht-rand:  #33414A;
     --oranje:      #EE8A52;
     --knop:        #F2E8DA;   /* 's avonds brandt er licht in het huisje */
     --knop-inkt:   #1C2427;
     --knop-hover:  #FFFFFF;
     --toestel:     #07090A;
     --toestel-rand: rgba(255, 255, 255, .16);
+    --scherm-rand: rgba(255, 255, 255, .22);
     --schaduw:     0 28px 50px -26px rgba(0, 0, 0, .8);
   }
 }
@@ -73,8 +80,8 @@
 
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 /* Zacht scrollen alleen na een klik op de pagina zelf (dan heeft een link de
-   focus). Kom je binnen via een link met #anker, zoals de wissel naar versie
-   B, dan sta je meteen op de goede plek. */
+   focus). Kom je binnen via een link met #anker, dan sta je meteen op de
+   goede plek. */
 @media (prefers-reduced-motion: no-preference) {
   html:focus-within { scroll-behavior: smooth; }
 }
@@ -87,13 +94,58 @@ body {
   flex-direction: column;
   background: var(--papier);
   color: var(--inkt);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-               "Helvetica Neue", Arial, sans-serif;
-  font-size: 1.0625rem;
-  line-height: 1.6;
+  font-family: "Bitter", Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  line-height: 1.65;
+  overflow-wrap: break-word;   /* een woord dat niet op de regel past, breekt af */
 }
 
-body > main { flex: 1 0 auto; }
+/* De inhoud is een container, zodat de opmaak kan reageren op hoeveel tekst
+   er op een regel past: een containerquery in rem telt grotere tekst mee. */
+body > main {
+  flex: 1 0 auto;
+  container: pagina / inline-size;
+}
+
+/* Lange samengestelde woorden als „verzekeringsdossier” afbreken met een
+   afbreekstreepje (lang="nl") als er weinig ruimte is: op een telefoon, of
+   bij grote tekst. Op een breed scherm met gewone tekst niet.
+   Safari kent hyphenate-limit-chars niet en breekt anders ook „gege-ven”
+   en „Woon-vos” af. Daar houden de twee -webkit-regels minstens vijf
+   tekens voor en na het streepje; Safari telt een leesteken mee, dus ook
+   „gege-ven,” en „Woon-vos.” blijven heel. */
+@container pagina (max-width: 40rem) {
+  .wrap {
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    hyphenate-limit-chars: 10 4 4;   /* korte woorden als „online” blijven heel */
+    -webkit-hyphenate-limit-before: 5;
+    -webkit-hyphenate-limit-after: 5;
+  }
+}
+
+/* Links, adressen en namen krijgen geen automatisch afbreekstreepje: geen
+   „hallo@woon-vos.nl” of „Test-Flight”. Zet class="naam" alleen om een naam
+   die anders wel afbreekt. Is een woord bij grote tekst te lang voor de
+   regel, zet dan een zacht afbreekteken (&shy;) op een natuurlijke plek,
+   zoals in „Persoons&shy;gegevens”. Dat telt alleen waar de rest van de
+   tekst ook afbreekt (smalle pagina of grote tekst); op een brede pagina
+   gaat zo'n woord heel naar de volgende regel. */
+a, code, .naam {
+  -webkit-hyphens: none;
+  hyphens: none;
+}
+@container pagina (max-width: 40rem) {
+  a, code, .naam {
+    -webkit-hyphens: manual;
+    hyphens: manual;
+  }
+}
+
+/* Een mailadres blijft heel zolang het op de regel past. Past het echt
+   niet, dan mag het overal breken, zodat het ook in een smalle kolom de
+   pagina niet breder duwt. */
+a[href^="mailto:"] { overflow-wrap: anywhere; }
 
 img { max-width: 100%; height: auto; }
 
@@ -137,7 +189,7 @@ h3 {
 p { margin: 0 0 1em; }
 ul, ol { margin: 0 0 1em; padding-left: 1.25em; }
 li { margin-bottom: .3em; }
-strong { font-weight: 650; color: var(--inkt-sterk); }
+strong { font-weight: 600; color: var(--inkt-sterk); }
 .heel { white-space: nowrap; }   /* "cv-ketel", "e-mailadres" niet afbreken op het streepje */
 
 a {
@@ -173,6 +225,7 @@ a:hover { text-decoration-thickness: 3px; }
 
 .kop .wrap {
   display: flex;
+  flex-wrap: wrap;             /* bij heel grote tekst valt het menu onder het logo */
   align-items: center;
   gap: 8px 26px;
   min-height: 76px;
@@ -200,7 +253,7 @@ a:hover { text-decoration-thickness: 3px; }
   display: inline-block;
   padding: 11px 0;
   color: var(--inkt-zacht);
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: none;
 }
 .kop nav a:hover { color: var(--inkt-sterk); }
@@ -242,358 +295,341 @@ a:hover { text-decoration-thickness: 3px; }
   font-size: .98rem;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .knop, .wissel a { transition: background-color .15s ease; }
+  .knop { transition: background-color .15s ease; }
 }
 
-/* -- telefoon rond een echte schermafbeelding --
-   --b is de breedte van het toestel; al het andere schaalt mee. */
+/* -- een echte schermafbeelding, zonder telefoon eromheen --
+   Alleen de ronde schermhoek en een dunne lijn. Een uitsnede krijgt een
+   eigen aspect-ratio in de HTML; het scherm loopt dan van boven door tot
+   die hoogte en de onderrand is recht. */
 
-.toestel {
-  --b: 280px;
+.scherm {
   position: relative;
-  width: var(--b);
-  margin: 0;
-  padding: calc(var(--b) * .03);
-  background: var(--toestel);
-  border-radius: calc(var(--b) * .15);
-  box-shadow: 0 0 0 1px var(--toestel-rand), var(--schaduw);
+  overflow: hidden;
+  border: 1px solid var(--scherm-rand);
+  border-radius: 22px 22px 6px 6px;
+  background: #F8F1E9;          /* de achtergrond van de app zelf */
+  color: #2D363A;               /* laadt een scherm niet, dan blijft de alt-tekst
+                                   ook in het donker leesbaar op het crème vlak */
 }
-.toestel::before {             /* het eilandje bovenin het scherm */
-  content: "";
-  position: absolute;
-  z-index: 1;
-  top: calc(var(--b) * .054);
-  left: 50%;
-  width: calc(var(--b) * .29);
-  height: calc(var(--b) * .082);
-  transform: translateX(-50%);
-  background: #000;
-  border-radius: 999px;
-}
-.toestel img {
+.scherm img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: calc(var(--b) * .12);
-  background: #F8F1E9;
 }
+.scherm.rond { border-radius: 22px; }
 
-.podium {
-  background: var(--podium);
-  border-radius: 28px;
+figcaption {
+  margin-top: 12px;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--inkt-zacht);
 }
 
 /* -- hero -- */
 
-.held { padding-top: clamp(24px, 4vw, 56px); }
+.held { padding-top: clamp(28px, 5vw, 64px); }
 .held .wrap {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 40px;
 }
 @media (min-width: 720px) {
   .held .wrap {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
+    gap: 56px;
   }
 }
-@media (min-width: 960px) {
-  .held .wrap { gap: 56px; }
-}
-.held-tekst { max-width: 35rem; }
-.bovenregel {
-  margin: 0 0 18px;
-  font-size: .95rem;
-  font-weight: 600;
-  letter-spacing: .01em;
-  color: var(--inkt-zacht);
+.held-tekst { max-width: 36rem; }
+.held h1 { margin-bottom: .5em; }
+/* „vaatwasser?” in de kop breekt alleen af (bij het zachte afbreekteken,
+   „vaat-wasser?”) als het woord niet op een eigen regel past. Anders breekt
+   Safari de kop ook op een gewone telefoon af. De kop is daarvoor een
+   container: het woord is 5,64em breed in de letter van de kop. */
+.held h1 { container-type: inline-size; }
+.held h1 .kopwoord { -webkit-hyphens: none; hyphens: none; }
+@container (max-width: 5.7em) {
+  .held h1 .kopwoord { -webkit-hyphens: manual; hyphens: manual; }
 }
 .held-sub {
-  font-size: clamp(1.125rem, 1.02rem + .45vw, 1.3rem);
-  line-height: 1.55;
-  max-width: 34ch;
+  font-size: clamp(1.15rem, 1.05rem + .45vw, 1.32rem);
+  line-height: 1.6;
+  max-width: 34em;
 }
 .held-actie { margin-top: 30px; }
 .held-noot {
   margin: 14px 0 0;
-  font-size: .95rem;
+  font-size: 1rem;
   color: var(--inkt-zacht);
-  max-width: 36ch;
+  max-width: 36em;
 }
-
-/* Eén toestel dat van onderen het podium in komt: je ziet het bovenste deel
-   van het scherm, daar staat waar het om gaat. */
-.held-podium {
-  position: relative;
-  overflow: hidden;
-  height: clamp(360px, 96vw, 500px);
+.held-beeld {
+  margin: 0;
+  width: min(76vw, 300px);
 }
 @media (min-width: 720px) {
-  .held-podium { height: 480px; }
-}
-@media (min-width: 960px) {
-  .held-podium { height: 560px; }
-}
-.held-podium .toestel {
-  --b: clamp(208px, 60vw, 300px);
-  position: absolute;
-  top: clamp(36px, 7vw, 56px);
-  left: 50%;
-  transform: translateX(-50%);
-}
-@media (min-width: 720px) {
-  .held-podium .toestel { --b: clamp(220px, 27vw, 300px); }
+  .held-beeld { width: clamp(260px, 30vw, 340px); }
 }
 
 /* -- functies -- */
 
-.functies { padding-top: clamp(72px, 9vw, 120px); }
-.sectie-kop { max-width: 40rem; }
+.functies { padding-top: clamp(80px, 10vw, 128px); }
+.sectie-kop { max-width: 38rem; }
 .sectie-kop p {
-  font-size: clamp(1.0625rem, 1rem + .3vw, 1.2rem);
+  font-size: clamp(1.125rem, 1.05rem + .3vw, 1.25rem);
+  color: var(--inkt);
+}
+
+/* Vier korte stukken: gewone tekst in twee kolommen, zonder iconen. */
+.kort {
+  list-style: none;
+  margin: clamp(36px, 5vw, 56px) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px 56px;
+}
+@media (min-width: 760px) {
+  .kort { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.kort li { margin: 0; max-width: 34em; }
+.kort h3 { font-size: 1.25rem; margin-bottom: .35em; }
+.kort p { margin: 0; }
+.kort .citaat {
+  margin-top: .7em;
+  font-style: italic;
   color: var(--inkt-zacht);
 }
+.kort q { quotes: "\201E" "\201D"; }
 
-.rij { margin-top: clamp(48px, 7vw, 96px); }
-.rij .wrap {
+/* Een functie als bladzijde uit een handleiding: links de tekst in een
+   vaste leesbreedte, rechts het echte scherm met genummerde aanwijzingen.
+   De cijfers naast het scherm en voor de lijst horen bij elkaar. Onder 820px
+   komt eerst de kop, dan het scherm, dan de lijst.
+   De twee kolommen vragen ook genoeg tekstbreedte: een containerquery in rem
+   telt grotere tekst mee, net als bij meedoen. Bij gewone tekst ligt de grens
+   op 800px pagina, dus vanaf 820px venster, ook met een vaste schuifbalk.
+   Bij 150 procent tekst begint het naast elkaar rond 1200px, bij 200 procent
+   rond 1600px; daaronder blijft de tekstkolom breed genoeg om te lezen. */
+.uitleg { margin-top: clamp(64px, 9vw, 120px); }
+.uitleg .wrap {
   display: grid;
-  gap: 32px;
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "kop" "beeld" "lijst" "rest";
+  row-gap: 24px;
 }
-@media (min-width: 700px) {
-  .rij .wrap {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 40px;
+@media (min-width: 820px) {
+  @container pagina (min-width: 50rem) {
+    .uitleg .wrap {
+      grid-template-columns: minmax(0, 32rem) auto;
+      grid-template-areas: "kop beeld" "lijst beeld" "rest beeld";
+      grid-template-rows: auto auto 1fr;
+      justify-content: start;
+      column-gap: clamp(48px, 8vw, 120px);
+      row-gap: 0;
+    }
   }
-  .rij-om .rij-beeld { order: 2; }
 }
-@media (min-width: 960px) {
-  .rij .wrap { gap: 72px; }
+.uitleg-kop { grid-area: kop; max-width: 34em; }
+.uitleg-kop h3 {
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  line-height: 1.2;
+  margin-bottom: .45em;
 }
-/* Net als in de hero komt het toestel van onderen het podium in: je ziet
-   het bovenste deel van het scherm, daar staat waar het om gaat. */
-.rij-beeld .podium {
-  position: relative;
-  overflow: hidden;
-  height: clamp(400px, 112vw, 500px);
+.uitleg-beeld { grid-area: beeld; margin: 0; align-self: start; }
+.aanwijzingen { grid-area: lijst; }
+.uitleg-rest { grid-area: rest; max-width: 34em; }
+.uitleg-rest > :last-child { margin-bottom: 0; }
+
+.uitleg-groot  { --schermbreedte: 340px; }
+.uitleg-klein  { --schermbreedte: 280px; }
+.uitleg-middel { --schermbreedte: 300px; }
+
+/* De cijfers staan in de marge naast het scherm, op de hoogte van de regel
+   waar ze bij horen, zodat ze nooit iets op het scherm bedekken. De figuur
+   houdt daarvoor aan de kant met cijfers ruimte vrij (--pinruimte).
+   De breedte van de figuur ligt vast in px en hangt niet af van de
+   afbeelding: zolang een lazy geladen scherm er nog niet is, houdt de figuur
+   zijn maat en vallen de cijfers niet op elkaar. Het scherm zelf krijgt zijn
+   hoogte uit de aspect-ratio in de HTML. */
+.uitleg-beeld {
+  --pin: 28px;
+  --pinafstand: 10px;
+  --pinruimte: 40px;
+  --hang: 0px;
 }
-.rij-beeld .toestel {
-  --b: clamp(224px, 62vw, 272px);
+.uitleg-groot .uitleg-beeld,
+.uitleg-klein .uitleg-beeld {
+  width: calc(var(--schermbreedte) + 2 * var(--pinruimte));
+  max-width: calc(100% + 2 * var(--hang));
+  margin-left: calc(-1 * var(--hang));
+  margin-right: calc(-1 * var(--hang));
+  padding: 0 var(--pinruimte);
+}
+.uitleg-middel .uitleg-beeld {
+  width: calc(var(--schermbreedte) + var(--pinruimte));
+  max-width: calc(100% + var(--hang));
+  margin-right: calc(-1 * var(--hang));
+  padding-right: var(--pinruimte);
+}
+/* Op een telefoon krijgt het scherm bijna de volle kolom: de cijfers zijn
+   kleiner, staan dichter op het scherm en hangen in de witte rand van de
+   pagina, tot 4px van de kant van het venster. */
+@media (max-width: 819px) {
+  .uitleg-beeld {
+    --pin: 24px;
+    --pinafstand: 6px;
+    --pinruimte: 30px;
+    --hang: calc(var(--goot) - 4px);
+  }
+}
+.aangewezen { position: relative; }
+.pin {
   position: absolute;
-  top: clamp(32px, 7vw, 52px);
-  left: 50%;
-  transform: translateX(-50%);
+  width: var(--pin);
+  height: var(--pin);
+  margin-top: calc(var(--pin) / -2);
+  border-radius: 50%;
+  background: var(--knop);
+  color: var(--knop-inkt);
+  font-weight: 600;
+  font-size: calc(var(--pin) * .54);
+  line-height: var(--pin);
+  text-align: center;
 }
-@media (min-width: 700px) and (max-width: 959px) {
-  .rij-beeld .podium { height: 460px; }
-  .rij-beeld .toestel { --b: clamp(212px, 28vw, 256px); top: 40px; }
-}
-.rij-tekst { max-width: 32rem; }
-.rij-tekst h3 { font-size: clamp(1.5rem, 1.3rem + .8vw, 1.9rem); line-height: 1.2; }
-.rij-tekst > p { font-size: 1.125rem; }
+.pin.rechts { left: calc(100% + var(--pinafstand)); }
+.pin.links  { right: calc(100% + var(--pinafstand)); }
 
-.punten {
+.aanwijzingen {
   list-style: none;
+  counter-reset: wijs;
+  margin: 0 0 1.2em;
   padding: 0;
-  margin: 22px 0 0;
-  border-top: 1px solid var(--lijn);
+  max-width: 34em;
 }
-.punten li {
+@media (min-width: 820px) {
+  @container pagina (min-width: 50rem) {
+    .aanwijzingen { margin-top: .4em; }   /* naast het scherm, als hierboven */
+  }
+}
+.aanwijzingen li {
+  counter-increment: wijs;
   position: relative;
-  margin: 0;
-  padding: 12px 0 12px 32px;
-  border-bottom: 1px solid var(--lijn);
+  margin: 0 0 .7em;
+  padding-left: 42px;
 }
-.punten li::before {           /* vinkje */
-  content: "";
+.aanwijzingen li::before {
+  content: counter(wijs);
   position: absolute;
-  left: 6px;
-  top: calc(12px + .32em);
-  width: 6px;
-  height: 11px;
-  border-right: 2px solid var(--inkt);
-  border-bottom: 2px solid var(--inkt);
-  transform: rotate(45deg);
+  left: 0;
+  top: .1em;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--knop);      /* dezelfde kleuren als de cijfers naast het scherm */
+  color: var(--knop-inkt);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 28px;
+  text-align: center;
 }
 
-.tegels {
-  list-style: none;
-  margin: clamp(40px, 5vw, 64px) 0 0;
-  padding: 0;
-  display: grid;
-  gap: 36px 48px;
-}
-@media (min-width: 700px) {
-  .tegels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-.tegels li {
+/* Het berichtje dat de app klaarzet, als tekst. */
+.bericht { margin: 0 0 1.4em; }
+.bericht p {
+  display: inline-block;
   margin: 0;
-  padding-top: 22px;
-  border-top: 2px solid var(--inkt-sterk);
+  padding: 12px 18px;
+  border-radius: 18px 18px 18px 4px;
+  background: var(--vlak);
+  border: 1px solid var(--lijn);
+  color: var(--inkt-sterk);
 }
-.tegels svg {
-  display: block;
-  width: 30px;
-  height: 30px;
-  margin-bottom: 14px;
-  fill: none;
-  stroke: var(--inkt-sterk);
-  stroke-width: 1.7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.tegels p { margin: 0; max-width: 46ch; }
+.bericht figcaption { margin-top: 8px; }
 
-/* -- je gegevens -- */
+/* -- je gegevens --
+   Een gewone tabel met wat, waar en wanneer. Op smalle schermen wordt elke
+   rij een blokje (zie de tabelregels onderaan). */
 
 .gegevens {
-  margin-top: clamp(80px, 10vw, 128px);
-  padding: clamp(64px, 8vw, 104px) 0;
-  background: var(--nacht);
-  border-block: 1px solid var(--nacht-rand);
-  color: var(--nacht-zacht);
+  margin-top: clamp(72px, 9vw, 112px);
+  padding-top: clamp(48px, 6vw, 72px);
+  border-top: 1px solid var(--lijn);
 }
-.gegevens h2, .gegevens strong, .gegevens a { color: var(--nacht-inkt); }
-.gegevens .sectie-kop p { color: var(--nacht-zacht); }
-.gegevens dl {
-  display: grid;
-  gap: 28px 48px;
-  margin: 44px 0 0;
+.gegevens table {
+  max-width: 52rem;
+  margin: 28px 0 28px;
+  font-size: 1.0625rem;
 }
-@media (min-width: 700px) {
-  .gegevens dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.gegevens th, .gegevens td { padding: 12px 24px 12px 0; }
+@container pagina (max-width: 36rem) {
+  .gegevens th, .gegevens td { padding: 2px 0; }
 }
-@media (min-width: 1040px) {
-  .gegevens dl { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-.gegevens dl > div {
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, .2);
-}
-.gegevens dt {
-  font-weight: 650;
-  color: var(--nacht-inkt);
-  margin-bottom: 4px;
-}
-.gegevens dd { margin: 0; }
-.gegevens .na {
-  margin: 44px 0 0;
-}
-.gegevens a { text-decoration-color: var(--oranje); }
+.gegevens tbody th { font-weight: 600; }
+.gegevens .wrap > p:last-child { max-width: 38em; margin-bottom: 0; }
 
-/* -- over (verschilt per variant) -- */
+/* -- over de maker -- */
 
 .over { padding-top: clamp(72px, 9vw, 120px); }
-.over .wrap { display: grid; gap: 8px 48px; }
+.over .wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px 48px; }
 @media (min-width: 900px) {
   .over .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
 }
 .over-tekst { max-width: 40rem; }
 .over-tekst p { font-size: 1.125rem; }
 
-/* Wissel tussen versie A en B, alleen voor testers. Gewone links; de
-   actieve heeft aria-current="page". */
-.wissel {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 16px;
-  max-width: 40rem;
-  margin-top: 12px;
-  padding-top: 20px;
+/* -- meedoen --
+   Eén koel grijs vlak over de hele breedte, als het strookje achterin een
+   handleiding. Per toestel een eigen kolom met de knop direct onder de
+   uitleg. Zonder nummers, want iPhone en Android zijn twee aparte wegen. */
+
+.meedoen {
+  container: meedoen / inline-size;
+  margin-top: clamp(64px, 8vw, 104px);
+  padding: clamp(48px, 7vw, 88px) 0 clamp(56px, 7vw, 88px);
+  background: var(--vlak);
   border-top: 1px solid var(--lijn);
-  color: var(--inkt-zacht);
-  font-size: .95rem;
-  line-height: 1.35;
 }
-@media (min-width: 900px) {
-  .wissel { grid-column: 2; }
-}
-.wissel p { margin: 0; }
-.wissel ul {
-  display: flex;
-  gap: 4px;
-  list-style: none;
-  margin: 0;
-  padding: 3px;
-  border: 1px solid var(--lijn);
-  border-radius: 999px;
-  background: var(--papier);
-}
-.wissel li { margin: 0; }
-.wissel a {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  padding: 0 16px;
-  border-radius: 999px;
-  color: var(--inkt);
-  font-weight: 600;
-  text-decoration: none;
-}
-.wissel a::after {             /* tikdoel 44px hoog */
-  content: "";
-  position: absolute;
-  left: 0; right: 0;
-  top: -4px; bottom: -4px;
-}
-.wissel a[aria-current="page"] {
-  background: var(--knop);
-  color: var(--knop-inkt);
-}
-.wissel a:not([aria-current]):hover { background: var(--vlak); }
-
-/* -- meedoen -- */
-
-.meedoen { padding: clamp(72px, 9vw, 120px) 0 clamp(72px, 9vw, 112px); }
-.meedoen .podium {
+.meedoen .wrap {
   display: grid;
-  gap: 28px 64px;
-  padding: clamp(28px, 6vw, 64px);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px 72px;
 }
-@media (min-width: 900px) {
-  .meedoen .podium {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: auto 1fr;
-    grid-template-areas: "kop stappen" "actie stappen";
-    align-items: start;
-    row-gap: 8px;
+/* Een containerquery in rem in plaats van een mediaquery: zet iemand de tekst
+   groter, dan vallen de kolommen eerder onder elkaar. */
+@container meedoen (min-width: 66rem) {
+  .meedoen .wrap {
+    grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+    grid-template-areas: "kop routes" "kop na";
   }
   .meedoen-kop { grid-area: kop; }
-  .meedoen .stappen { grid-area: stappen; margin-bottom: 0; }
-  .meedoen-actie { grid-area: actie; }
+  .routes { grid-area: routes; }
+  .meedoen-na { grid-area: na; }
 }
 .meedoen h2 { margin-bottom: .4em; }
-.meedoen .inleiding { font-size: 1.125rem; max-width: 34ch; }
-.stappen {
-  list-style: none;
-  counter-reset: stap;
-  margin: 0;
-  padding: 0;
-}
-.stappen li {
-  counter-increment: stap;
-  position: relative;
-  margin: 0 0 18px;
-  padding-left: 52px;
-  min-height: 36px;
-}
-.stappen li::before {
-  content: counter(stap);
-  position: absolute;
-  left: 0;
-  top: -3px;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+.meedoen .inleiding { font-size: 1.125rem; max-width: 30em; }
+
+.routes {
   display: grid;
-  place-items: center;
-  background: var(--papier);
-  color: var(--inkt-sterk);
-  font-family: "Bitter", Georgia, serif;
-  font-weight: 600;
-  box-shadow: inset 0 0 0 1px var(--lijn);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px 48px;
 }
+@container meedoen (min-width: 40rem) {
+  .routes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.route {
+  padding-top: 20px;
+  border-top: 2px solid var(--inkt-sterk);
+}
+.route h3 { font-size: 1.3rem; margin-bottom: .4em; }
+.route p { max-width: 34em; }
+.route .knop { margin-top: 4px; }
+
+.meedoen-na { max-width: 44em; }
+.meedoen-na p:first-child { margin-bottom: .6em; }
+
 /* Alleen op een computer (muis, breed scherm): een QR-code naar deze pagina,
    want Woonvos is een app voor de telefoon. Wit vlak, zodat de code ook in
    de donkere stand goed scant. */
@@ -603,9 +639,11 @@ a:hover { text-decoration-thickness: 3px; }
     display: flex;
     align-items: center;
     gap: 16px;
-    margin: 0 0 20px;
-    max-width: 30rem;
-    font-size: .95rem;
+    margin: 24px 0 0;
+    max-width: 26rem;
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.45;
     color: var(--inkt-zacht);
   }
   .op-computer img {
@@ -613,25 +651,22 @@ a:hover { text-decoration-thickness: 3px; }
     padding: 6px;
     border-radius: 12px;
     background: #FFFFFF;
+    border: 1px solid var(--lijn);
+    color: #2D363A;             /* laadt de code niet, dan blijft de alt-tekst
+                                   ook in het donker leesbaar op het witte vlak */
   }
   .op-computer p { margin: 0; }
 }
-.meedoen-actie .knoppen {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
 .meedoen .noot {
   margin: 14px 0 0;
-  font-size: .95rem;
+  font-size: 1rem;
   color: var(--inkt-zacht);
-  max-width: 40ch;
 }
 
 /* -- voet -- */
 
 .voet {
-  background: var(--vlak);
+  background: var(--papier);
   border-top: 1px solid var(--lijn);
   color: var(--inkt-zacht);
   font-size: .95rem;
@@ -639,6 +674,7 @@ a:hover { text-decoration-thickness: 3px; }
 }
 .voet .rij-voet {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px 48px;
 }
 @media (min-width: 760px) {
@@ -734,9 +770,11 @@ thead th { font-weight: 600; color: var(--inkt-zacht); border-bottom-width: 2px;
 th[scope="row"] { color: var(--inkt-sterk); font-weight: 600; }
 td ul { margin: 0; padding-left: 1.1em; }
 
-/* Onder 560px wordt elke rij een blokje met de kolomkop boven elke cel.
-   De thead blijft bestaan voor hulptechnologie, maar is visueel verborgen. */
-@media (max-width: 560px) {
+/* Is er weinig ruimte, dan wordt elke rij een blokje met de kolomkop boven
+   elke cel: op een telefoon, en bij grote tekst ook op een breder scherm
+   (een containerquery in rem). De thead blijft bestaan voor
+   hulptechnologie, maar is visueel verborgen. */
+@container pagina (max-width: 36rem) {
   table, thead, tbody, tr, th, td { display: block; }
   thead {
     position: absolute; width: 1px; height: 1px; overflow: hidden;
