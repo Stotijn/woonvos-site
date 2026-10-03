@@ -45,7 +45,10 @@
   --inkt-zacht:  #56626A;
   --lijn:        #DCE1E4;
   --vlak:        #F3F5F6;
-  --oranje:      #D0602A;
+  --oranje:      #D96E36;   /* vosoranje uit het app-icoon. 3,4:1 op wit en
+                               3,1:1 op --vlak; op crème maar 2,8:1, dus nooit
+                               een link of knop op een crème vlak. Als tekst
+                               alleen #A84C1B (5,7:1 op wit) */
   --knop:        #2D363A;
   --knop-inkt:   #FFFFFF;
   --knop-hover:  #45525A;
@@ -65,7 +68,7 @@
     --inkt-zacht:  #A9B4BB;
     --lijn:        #2C353A;
     --vlak:        #1A2125;
-    --oranje:      #EE8A52;
+    --oranje:      #EE8A52;   /* vosoranje licht: 7,1:1 op de nacht */
     --knop:        #F2E8DA;   /* 's avonds brandt er licht in het huisje */
     --knop-inkt:   #1C2427;
     --knop-hover:  #FFFFFF;

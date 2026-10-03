@@ -99,8 +99,11 @@ welke regels uit de pas lopen.
   staat in `assets/` en komt van het eigen domein. De privacypagina belooft
   het; de site maakt het waar. Daardoor is er ook geen cookiebanner nodig.
 - **Kleur is functie.** Leisteen (het huisje uit het logo) voor tekst, koppen,
-  de knop en de genummerde aanwijzingen. Oranje (de vacht) alleen voor de
-  focusring en de streep onder links, nooit als tekst op wit. Koele grijzen
+  de knop en de genummerde aanwijzingen. Oranje (de vacht, vosoranje
+  `#D96E36` uit het app-icoon, in donker `#EE8A52`) alleen voor de
+  focusring en de streep onder links, nooit als tekst op wit. Moet oranje
+  toch tekst zijn, gebruik dan `#A84C1B`. Op crème haalt vosoranje geen
+  3:1, dus nooit een link of knop op een crème vlak. Koele grijzen
   voor lijnen en het aanmeldvlak. De crèmekleur van de app zit alleen in de
   schermen zelf; er staat geen telefoon van CSS en geen crème vlak omheen.
   Het paginavlak blijft wit.
