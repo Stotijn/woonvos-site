@@ -126,11 +126,7 @@ body > main {
 
 /* Links, adressen en namen krijgen geen automatisch afbreekstreepje: geen
    „hallo@woon-vos.nl” of „Test-Flight”. Zet class="naam" alleen om een naam
-   die anders wel afbreekt. Is een woord bij grote tekst te lang voor de
-   regel, zet dan een zacht afbreekteken (&shy;) op een natuurlijke plek,
-   zoals in „Persoons&shy;gegevens”. Dat telt alleen waar de rest van de
-   tekst ook afbreekt (smalle pagina of grote tekst); op een brede pagina
-   gaat zo'n woord heel naar de volgende regel. */
+   die anders wel afbreekt. */
 a, code, .naam {
   -webkit-hyphens: none;
   hyphens: none;
@@ -140,6 +136,34 @@ a, code, .naam {
     -webkit-hyphens: manual;
     hyphens: manual;
   }
+}
+
+/* Een woord dat bij grote tekst op een kleine telefoon niet op een eigen
+   regel past, krijgt een zacht afbreekteken (&shy;) op een natuurlijke
+   plek, zoals „Persoons&shy;gegevens”. Een browser breekt daar af zodra de
+   regel vol is, ook als het hele woord op de volgende regel past. Daarom
+   staat het afbreken alleen aan als de tekstkolom smaller is dan het woord:
+   het blok eromheen is een container (class="woordvak") en het woord staat
+   in een span met een eigen grens. De grens is de breedte van het woord met het
+   leesteken erachter, in em van de tekst, gemeten in Chromium en WebKit
+   (Bitter 400), met een kleine marge erboven:
+   „Persoonsgegevens,” 8,83em, „privacyverklaring” 8,17em en
+   „verantwoordelijk” 7,91em. Verander je de letter, meet dan opnieuw. */
+.woordvak { container-type: inline-size; }
+.zacht-persoonsgegevens,
+.zacht-privacyverklaring,
+.zacht-verantwoordelijk {
+  -webkit-hyphens: none;
+  hyphens: none;
+}
+@container (max-width: 8.9em) {
+  .zacht-persoonsgegevens { -webkit-hyphens: manual; hyphens: manual; }
+}
+@container (max-width: 8.25em) {
+  .zacht-privacyverklaring { -webkit-hyphens: manual; hyphens: manual; }
+}
+@container (max-width: 8em) {
+  .zacht-verantwoordelijk { -webkit-hyphens: manual; hyphens: manual; }
 }
 
 /* Een mailadres blijft heel zolang het op de regel past. Past het echt
