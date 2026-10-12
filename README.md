@@ -38,6 +38,13 @@ DNS.md              De DNS-records bij TransIP en hoe ze gecontroleerd zijn
 - `schermen/` bevat echte schermafbeeldingen van de app, per scherm twee
   WebP-bestanden: `-390` (1x) en `-780` (2x). Er staan alleen schermen in
   die de site gebruikt. Zie „Schermafbeeldingen”.
+- `zashi/` bevat de tijdelijke Zashi (besluit Bram, 12-10-2026): de zit, de
+  sprong, twee tussenbeelden (neerkomen en gaan zitten) en de heuvel voor
+  overdag en bij nacht, als WebP zonder kwaliteitsverlies. Ze komen uit
+  `bijlagen/huisstijl/zashi-tijdelijk/bestanden/` van het project, waar ook
+  de huisstijl uitlegt hoe ze samen gaan. In het eerste blok van de voorpagina
+  en van zakelijk.html springt Zashi eenmaal binnen en landt in de zit op de
+  heuvel; met minder beweging zit ze er meteen.
 - `og-woonvos.png` (1200 × 630) is de afbeelding die WhatsApp, Signal,
   LinkedIn en dergelijke tonen als iemand een link naar de site deelt.
 - `favicon-32.png` en `apple-touch-icon.png` zijn de icoontjes.

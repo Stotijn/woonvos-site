@@ -13,7 +13,8 @@
    De crèmekleur zit alleen nog in de schermen zelf, want het is de kleur
    van de app. Het paginavlak blijft wit, de schermen staan er zonder
    telefoon omheen op. Geen decoratie en geen beweging waar niemand om
-   vroeg. Het logo staat alleen in de kop en de voet. */
+   vroeg. Het logo staat alleen in de kop en de voet; de tijdelijke Zashi
+   landt eenmaal in het eerste blok (besluit Bram, 12-10-2026). */
 
 @font-face {
   font-family: "Bitter";
@@ -828,3 +829,62 @@ td ul { margin: 0; padding-left: 1.1em; }
 .leeg .wrap { max-width: calc(40rem + 2 * var(--goot)); }
 .leeg p { font-size: 1.125rem; }
 .leeg .knop { margin-top: 12px; }
+
+
+/* -- Zashi (12-10-2026, op verzoek van Bram) --
+   De tijdelijke Zashi uit de huisstijl: ze springt eenmaal vanaf links in een
+   lage boog binnen en landt in de zit op de heuvel. Alle beelden hebben
+   dezelfde kopmaat per pixel, dus --zashi-k is voor elke houding gelijk. Bij
+   nacht wisselt alleen de heuvel naar zijn nachtversie; Zashi blijft zoals
+   overdag (besluit Bram 12-10). Met minder beweging zit ze er meteen.
+   Versiering: verborgen voor schermlezers, geen klikken, geen JavaScript. */
+.zashi {
+  --zashi-k: .2;
+  position: relative;
+  width: calc(1005px * var(--zashi-k));
+  height: calc(658px * var(--zashi-k));
+  margin-top: clamp(28px, 4vw, 44px);
+  pointer-events: none;
+}
+@media (min-width: 720px) { .zashi { --zashi-k: .22; } }
+.zashi picture, .zashi img { display: block; }
+.zashi img { width: 100%; height: auto; }
+.zashi-heuvel { position: absolute; left: 0; bottom: 0; width: calc(1005px * var(--zashi-k)); }
+.zashi-vos {
+  position: absolute;
+  bottom: 0;
+  left: calc((1005px - 453px) / 2 * var(--zashi-k));
+  width: calc(453px * var(--zashi-k));
+  height: calc(658px * var(--zashi-k));
+}
+.zashi-lijf { position: absolute; inset: 0; transform-origin: 50% 100%; }
+.zashi-zit { position: absolute; left: 0; bottom: 0; width: 100%; transform-origin: 50% 100%; }
+/* De houdingen staan rechts uitgelijnd op het midden tussen neus en voorste
+   voetje (gemeten in de bestanden, in px vanaf de rechterrand: zit 55,
+   sprong 62, neerkomen 67, gaan zitten 91). Zo verspringen kop en pootjes
+   bij een wissel elk maar half zo ver als bij uitlijnen op de neus alleen. */
+.zashi-sprong, .zashi-landing, .zashi-gaan-zitten { position: absolute; bottom: 0; opacity: 0; transform-origin: 50% 100%; }
+.zashi-sprong { right: calc(-7px * var(--zashi-k)); width: calc(902px * var(--zashi-k)); }
+.zashi-landing { right: calc(-12px * var(--zashi-k)); width: calc(892px * var(--zashi-k)); }
+.zashi-gaan-zitten { right: calc(-36px * var(--zashi-k)); width: calc(611px * var(--zashi-k)); }
+/* Het animatieblok tussen de markeringen komt uit maak-varianten.py in de
+   huisstijl van het project (variant B, besluit Bram 12-10-2026). Pas het
+   daar aan en maak het opnieuw. */
+/* zashi-animatie:begin */
+@media (prefers-reduced-motion: no-preference) {
+  /* Variant B: een lage boog van 0,84 s, dan neerkomen (0,12 s) en gaan zitten (0,16 s), dan de zit die indeukt en opveert. Harde wissels, want overvloeien gaf dubbele koppen. */
+  .zashi-vos { animation: zashi-x-b 1.120s linear 0.6s both; }
+  .zashi-lijf { animation: zashi-y-b 1.120s linear 0.6s both; }
+  .zashi-sprong { animation: zashi-sprong-b 1.120s linear 0.6s both; }
+  .zashi-landing { animation: zashi-landing-b 1.120s linear 0.6s both; }
+  .zashi-gaan-zitten { animation: zashi-gaan-zitten-b 1.120s linear 0.6s both; }
+  .zashi-zit { animation: zashi-zit-b 1.120s linear 0.6s both, zashi-veer-b 0.32s cubic-bezier(.3, .7, .4, 1) 1.720s both; }
+}
+@keyframes zashi-x-b { 0% { transform: translateX(calc(-900px * var(--zashi-k))); animation-timing-function: cubic-bezier(.25, .5, .35, 1); } 75%, 100% { transform: translateX(0); } }
+@keyframes zashi-y-b { 0% { transform: translateY(0) rotate(-10deg); animation-timing-function: cubic-bezier(.2, .7, .4, 1); } 34.5% { transform: translateY(calc(-260px * var(--zashi-k))) rotate(-2deg); animation-timing-function: cubic-bezier(.6, 0, .8, .3); } 67.5% { transform: translateY(calc(-30px * var(--zashi-k))) rotate(5deg); } 75% { transform: translateY(0) rotate(2deg); } 80.36%, 100% { transform: translateY(0) rotate(0); } }
+@keyframes zashi-sprong-b { 0% { opacity: 0; } 4.5%, 74.95% { opacity: 1; } 75%, 100% { opacity: 0; } }
+@keyframes zashi-landing-b { 0%, 74.95% { opacity: 0; transform: scaleY(1); } 75% { opacity: 1; transform: scaleY(1); } 85.66% { opacity: 1; transform: scaleY(.96); } 85.71%, 100% { opacity: 0; transform: scaleY(.96); } }
+@keyframes zashi-gaan-zitten-b { 0%, 85.66% { opacity: 0; transform: scaleY(.97); } 85.71% { opacity: 1; transform: scaleY(.97); } 99.95% { opacity: 1; transform: scaleY(1.01); } 100% { opacity: 0; transform: scaleY(1.01); } }
+@keyframes zashi-zit-b { 0%, 99.95% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes zashi-veer-b { 0% { transform: scale(1.04, .9); } 45% { transform: scale(.98, 1.04); } 100% { transform: scale(1, 1); } }
+/* zashi-animatie:end */
