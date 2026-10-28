@@ -1,0 +1,24 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "web",
+      "site": "https://woonvos.nl"
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "nl.woonvos.woonvos",
+      "sha256_cert_fingerprints": [
+        "VUL-IN-SHA256-SLEUTEL-APP-ONDERTEKENING",
+        "VUL-IN-SHA256-UPLOADSLEUTEL"
+      ]
+    }
+  }
+]

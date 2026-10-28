@@ -24,7 +24,24 @@ favicon.ico         Voor browsers die hem blind opvragen
 assets/             zie hieronder
 CNAME               Koppelt het domein woonvos.nl aan GitHub Pages
 DNS.md              De DNS-records bij TransIP en hoe ze gecontroleerd zijn
+.well-known/        De koppeling tussen de app en woonvos.nl (#444), zie hieronder
 ```
+
+`.well-known/` (het issue #444 in de app-repo, deel B en C):
+
+- `apple-app-site-association` (zonder extensie) laat een iPhone de inlog van
+  Woonvos bewaren en weer invullen bij woonvos.nl. Het bestand noemt de app
+  als team-ID plus bundel-id. Wisselt de app ooit van team (bijvoorbeeld bij
+  een bv), dan noemt het bestand tijdelijk beide.
+- `assetlinks.json` doet hetzelfde voor de wachtwoordmanager op Android. Het
+  noemt de app met twee SHA-256-vingerafdrukken uit de Play Console: de
+  sleutel waarmee Google de app ondertekent en de uploadsleutel.
+- Beide zijn kopieën van bestanden in de app-repo
+  (`ios/Runner/apple-app-site-association` en
+  `android/app/src/main/assetlinks.json`); daar staat de bron, hier de
+  gepubliceerde versie. Ze komen hier alleen met een ja van Bram.
+- `.nojekyll` moet blijven staan: zonder dat bestand publiceert GitHub Pages
+  geen map die met een punt begint.
 
 `assets/`:
 
@@ -184,6 +201,11 @@ Recept voor een nieuw scherm:
 ## Controleren voor je publiceert
 
 - `sh check-varianten.sh` moet "OK" geven.
+- Bij een wijziging in `.well-known/`: in de app-repo
+  `tool/check-site-association.sh --publish --site <pad naar deze map>`
+  moet "OK" geven. Die weigert zolang de vingerafdrukken van Play nog
+  `VUL-IN-...` zijn, of als een bestand hier anders is dan in de app-repo.
+  Na het publiceren: `tool/check-site-association.sh --live`.
 - De teksten en afdrukken van elke pagina (390 en 1280 px breed, licht en
   donker thema) worden nagekeken voordat je publiceert.
 
