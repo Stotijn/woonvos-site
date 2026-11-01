@@ -16,8 +16,10 @@
       "namespace": "android_app",
       "package_name": "nl.woonvos.woonvos",
       "sha256_cert_fingerprints": [
-        "VUL-IN-SHA256-SLEUTEL-APP-ONDERTEKENING",
-        "VUL-IN-SHA256-UPLOADSLEUTEL"
+        "43:82:1F:21:EF:AD:75:D9:14:E4:D8:0B:85:10:E6:75:4D:61:AF:54:78:C6:4B:1D:5F:EE:17:12:FE:8E:12:25",
+        "45:E7:B6:88:25:01:22:FE:12:52:10:E6:92:B3:23:D0:0D:46:49:DE:A3:7F:55:16:F0:08:31:1C:F0:81:DC:B5",
+        "51:36:6C:25:B5:47:68:63:D9:FE:43:CB:79:77:05:20:AB:10:9A:2E:ED:7E:59:2F:49:46:58:14:34:07:1A:4F",
+        "C0:13:B8:B3:76:DE:4A:A9:4A:0F:19:68:74:0B:41:3E:D4:51:C3:E6:BD:FE:2E:A3:E7:BF:00:41:5D:8E:68:0F"
       ]
     }
   }

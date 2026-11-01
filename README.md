@@ -34,8 +34,15 @@ DNS.md              De DNS-records bij TransIP en hoe ze gecontroleerd zijn
   als team-ID plus bundel-id. Wisselt de app ooit van team (bijvoorbeeld bij
   een bv), dan noemt het bestand tijdelijk beide.
 - `assetlinks.json` doet hetzelfde voor de wachtwoordmanager op Android. Het
-  noemt de app met twee SHA-256-vingerafdrukken uit de Play Console: de
-  sleutel waarmee Google de app ondertekent en de uploadsleutel.
+  noemt de app met vier SHA-256-vingerafdrukken van de pagina
+  App-ondertekening in de Play Console (01-11-2026): de drie sleutels van de
+  app-ondertekening (de sleutel "In gebruik", en de klassieke en de
+  post-kwantum sleutel van de vorige sleutel van 26-08, "Klaar voor kwantum
+  (bèta)") en de uploadsleutel. De hulp van Google "Use Play App Signing"
+  (01-11-2026) zegt: "Update your `assetlinks.json` file with these
+  fingerprints if you use Android App Links". In de app-repo staat naast het
+  bestand `assetlinks-roles.json` met de rol van elke vingerafdruk; dat
+  bestand komt niet op de site.
 - Beide zijn kopieën van bestanden in de app-repo
   (`ios/Runner/apple-app-site-association` en
   `android/app/src/main/assetlinks.json`); daar staat de bron, hier de
